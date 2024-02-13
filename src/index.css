@@ -7,7 +7,7 @@
   --navbar-bg: hsla(359, 100%, 18%, 1);
 
   /* Neutral Colors */
-  --header-bg: linear-gradient(117.61deg, #000000 -14.09%, #000000 -4.26%, rgba(0, 0, 0, 0.772977) 49.35%, rgba(0, 0, 0, 0.537787) 62.43%, rgba(0, 0, 0, 0.352599) 72.89%, rgba(0, 0, 0, 0) 81.11%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  --header-bg: linear-gradient(117.61deg, #000000 -14.09%, #000000 -4.26%, rgba(0, 0, 0, 0.772977) 49.35%, rgba(0, 0, 0, 0.537787) 62.43%, rgba(0, 0, 0, 0.352599) 72.89%, rgba(0, 0, 0, 0) 81.11%) ;
   --white: hsla(0, 0%, 100%, 1);
   --black: hsla(0, 0%, 0%, 1);
 
@@ -58,4 +58,95 @@ input:focus {
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+/* Utility Styles */
+.rule {
+  width: 90%;
+  margin-inline: auto;
+}
+
+/* Mobile Styles */
+/* Header Styles */
+header.homeHeader {
+  position: relative;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 40vh;
+}
+
+header.homeHeader.one {
+  background-image: url(./assets/images/gown.jpeg);
+}
+
+header.homeHeader.two {
+  background-image: url(./assets/images/award.jpeg);
+}
+
+header.homeHeader.three {
+  background-image: url(./assets/images/event.jpeg);
+}
+
+header.homeHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--header-bg);
+  opacity: .95;
+  z-index: 1;
+}
+
+header.homeHeader .landContainer {
+  z-index: 3;
+  position: relative;
+  text-align: center;
+  color: var(--white);
+  margin-block-end: 1rem;
+}
+
+header.homeHeader .landContainer p {
+  font-family: var(--rokkitt);
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-block-end: 1rem;
+}
+
+header.homeHeader .landContainer button {
+  border: none;
+  color: inherit;
+  padding: 0.5rem;
+  font-family: var(--opensans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  background-color: var(--navbar-bg);
+}
+
+/* Navabr Styles */
+nav.navbar {
+  color: var(--white); 
+  position: relative;
+  z-index: 2; 
+  padding-block: 1.5rem;
+}
+
+nav.navbar ul.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul.topNav li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+ul.topNav li p {
+  font-size: 1rem;
+  font-family: var(--rokkitt);
+  font-weight: 500;
 }
