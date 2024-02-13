@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Varaibles */
+:root {
+  /* Colors */
+  /* Primary Colors */
+  --navbar-bg: hsla(359, 100%, 18%, 1);
+
+  /* Neutral Colors */
+  --header-bg: linear-gradient(117.61deg, #000000 -14.09%, #000000 -4.26%, rgba(0, 0, 0, 0.772977) 49.35%, rgba(0, 0, 0, 0.537787) 62.43%, rgba(0, 0, 0, 0.352599) 72.89%, rgba(0, 0, 0, 0) 81.11%), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  --white: hsla(0, 0%, 100%, 1);
+  --black: hsla(0, 0%, 0%, 1);
+
+  /* Font Family */
+  --rokkitt: "Rokkitt", serif;
+  --opensans: "Open Sans", sans-serif;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--white);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul{
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+abbr[title] {
+  text-decoration: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+}
