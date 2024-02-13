@@ -184,6 +184,33 @@ main section ul {
   font-weight: 500;
 }
 
+main section .collectionSwiper {
+  position: relative;
+  text-align: center;
+  margin-block-end: 1rem;
+}
+
+main section .collectionSwiper img {
+  height: 250px;
+  width: 180px;
+  border-radius: 10px;
+}
+
+main section .collectionSwiper p {
+  font-family: var(--rokkitt);
+  font-weight: 600;
+  margin-block-start: 1rem;
+  font-size: 1rem;
+}
+
+main section .collectionSwiper button {
+  border: none;
+  background: transparent;
+  color: var(--navbar-bg);
+  width: unset;
+  top: 43%;
+}
+
 main section ul li {
   margin-block: 1rem;
 }

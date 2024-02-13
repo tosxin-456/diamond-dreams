@@ -1,8 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from "../../layout/Navbar";
+import SwiperCore from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import gown from '../../assets/images/gown.jpeg';
+import books from '../../assets/images/planning.jpeg';
+import cart from '../../assets/images/cart-bag.jpeg';
+
+import {
+  Navigation,
+  Pagination,
+  Autoplay
+} from 'swiper/modules';
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+SwiperCore.use([Autoplay, Navigation]);
 
 const Home = () => {
   const [currentHeader, setCurrentHeader] = useState("one");
+  const [collections, setCollections] = useState([
+    { id: 1, image: gown, title: 'Gown' },
+    { id: 2, image: books, title: 'Collection 2' },
+    { id: 3, image: cart, title: 'Bag' },
+  ]);
 
   useEffect(() => {
     const headers = ["one", "two", "three"];
@@ -15,6 +37,21 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, []); 
+
+  const handleSlideChange = (direction) => {
+    const activeIndex = swiperRef.current.swiper.activeIndex;
+    let newIndex = activeIndex;
+
+    if (direction === 'next') {
+      newIndex = (newIndex + 1) % collections.length;
+    } else if (direction === 'prev') {
+      newIndex = (newIndex - 1 + collections.length) % collections.length;
+    }
+
+    swiperRef.current.swiper.slideTo(newIndex, 500, false); 
+  };
+
+  const swiperRef = useRef(null);
 
   return (
     <>
@@ -38,7 +75,29 @@ const Home = () => {
         </section>
         <section>
           <h2>Our Collections</h2>
-          <div></div>
+          <div className='collectionSwiper'>
+            <Swiper
+              ref={swiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 3000, 
+                disableOnInteraction: false, // Allow manual interaction during autoplay
+              }}
+            >
+              {collections.map((collection) => (
+                <SwiperSlide key={collection.id}>
+                  <img src={collection.image} alt={collection.title} />
+                  <p>{collection.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleSlideChange('prev')}></button>
+            <button className="swiper-button-next" onClick={() => handleSlideChange('next')}></button>
+          </div>
         </section>
         <section>
           <h2>Why Choose Us</h2>
