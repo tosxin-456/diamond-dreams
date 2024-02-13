@@ -150,3 +150,40 @@ ul.topNav li p {
   font-family: var(--rokkitt);
   font-weight: 500;
 }
+
+/* Main Styles */
+main {
+  padding-block: 2rem;
+}
+
+main section {
+  padding-block: 1rem;
+}
+
+main section h2 {
+  text-align: center;
+  margin-block-end: 1.5rem;
+  font-family: var(--rokkitt);
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--black);
+}
+
+main section p {
+  line-height: 2;
+  font-family: var(--opensans);
+  font-weight: 400;
+  font-size: .8rem;
+}
+
+main section ul {
+  list-style: unset;
+  margin: 1rem;
+  font-size: .8rem;
+  font-family: var(--opensans);
+  font-weight: 500;
+}
+
+main section ul li {
+  margin-block: 1rem;
+}
