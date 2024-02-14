@@ -2,15 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from "../../layout/Navbar";
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+// PIC Imports 
+// Collection Images
 import gown from '../../assets/images/gown.jpeg';
 import books from '../../assets/images/planning.jpeg';
 import cart from '../../assets/images/cart-bag.jpeg';
 
-import {
-  Navigation,
-  Pagination,
-  Autoplay
-} from 'swiper/modules';
+// Couple Images
+import couple2 from '../../assets/images/couple2.png';
+import couple3 from '../../assets/images/couple3.jpg';
+import couple4 from '../../assets/images/couple4.jpg';
+
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -26,6 +30,14 @@ const Home = () => {
     { id: 3, image: cart, title: 'Bag' },
   ]);
 
+  const testimony = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'")
+
+  const [couple, setCouple] = useState([
+    { id: 1, image: couple4, title: testimony },
+    { id: 2, image: couple2, title: testimony },
+    { id: 3, image: couple3, title: testimony },
+  ]);
+
   useEffect(() => {
     const headers = ["one", "two", "three"];
     let currentIndex = 0;
@@ -38,7 +50,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []); 
 
-  const handleSlideChange = (direction) => {
+  const handleSlideChange = (direction, swiperRef) => {
     const activeIndex = swiperRef.current.swiper.activeIndex;
     let newIndex = activeIndex;
 
@@ -51,7 +63,21 @@ const Home = () => {
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
 
-  const swiperRef = useRef(null);
+  const handleCoppleChange = (direction, swiperRef) => {
+    const activeIndex = swiperRef.current.swiper.activeIndex;
+    let newIndex = activeIndex;
+
+    if (direction === 'next') {
+      newIndex = (newIndex + 1) % couple.length;
+    } else if (direction === 'prev') {
+      newIndex = (newIndex - 1 + couple.length) % couple.length;
+    }
+
+    swiperRef.current.swiper.slideTo(newIndex, 500, false); 
+  };
+
+  const collectionSwiperRef = useRef(null);
+  const coupleSwiperRef = useRef(null);
 
   return (
     <>
@@ -77,16 +103,16 @@ const Home = () => {
           <h2>Our Collections</h2>
           <div className='collectionSwiper'>
             <Swiper
-              ref={swiperRef}
+              ref={collectionSwiperRef}
               spaceBetween={30}
               pagination={{
                 clickable: true,
               }}
-              modules={[Autoplay]}
-              autoplay={{
-                delay: 3000, 
-                disableOnInteraction: false, // Allow manual interaction during autoplay
-              }}
+              // modules={[Autoplay]}
+              // autoplay={{
+              //   delay: 3000, 
+              //   disableOnInteraction: false, // Allow manual interaction during autoplay
+              // }}
             >
               {collections.map((collection) => (
                 <SwiperSlide key={collection.id}>
@@ -95,8 +121,8 @@ const Home = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <button className="swiper-button-prev" onClick={() => handleSlideChange('prev')}></button>
-            <button className="swiper-button-next" onClick={() => handleSlideChange('next')}></button>
+            <button className="swiper-button-prev" onClick={() => handleSlideChange('prev', collectionSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlideChange('next', collectionSwiperRef)}></button>
           </div>
         </section>
         <section>
@@ -118,6 +144,24 @@ const Home = () => {
         </section>
         <section>
           <h2>What do our couples say</h2>
+          <div className='collectionSwiper'>
+            <Swiper
+              ref={coupleSwiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+            >
+              {couple.map((couples) => (
+                <SwiperSlide key={couples.id}>
+                  <img src={couples.image} alt={couples.title} />
+                  <p>{couples.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleCoppleChange('prev', coupleSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleCoppleChange('next', coupleSwiperRef)}></button>
+          </div>
         </section>
       </main>
     </>
