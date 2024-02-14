@@ -10,6 +10,7 @@
   --header-bg: linear-gradient(117.61deg, #000000 -14.09%, #000000 -4.26%, rgba(0, 0, 0, 0.772977) 49.35%, rgba(0, 0, 0, 0.537787) 62.43%, rgba(0, 0, 0, 0.352599) 72.89%, rgba(0, 0, 0, 0) 81.11%) ;
   --white: hsla(0, 0%, 100%, 1);
   --black: hsla(0, 0%, 0%, 1);
+  --faq-bg: hsla(0, 0%, 95%, 0.3);
 
   /* Font Family */
   --rokkitt: "Rokkitt", serif;
@@ -50,7 +51,7 @@ abbr[title] {
   text-decoration: none;
 }
 
-input:focus {
+input:focus, textarea:focus {
   border: none;
   outline: none;
 }
@@ -213,4 +214,153 @@ main section .collectionSwiper button {
 
 main section ul li {
   margin-block: 1rem;
+}
+
+main section.academySection {
+  text-align: center;
+}
+
+main section.academySection img.epectPic{
+  text-align: center;
+  width: 40%;
+}
+
+main section.academySection ol {
+  font-size: .8rem;
+  font-family: var(--opensans);
+  font-weight: 500;
+  text-align: left;
+}
+
+main section.academySection ul {
+  list-style: disc;
+}
+
+/* FAQ */
+main section.faq article {
+  width: 90%;
+  margin-inline: auto;
+  margin-block-end: 2rem;
+  padding: 1rem;
+  background-color: var(--faq-bg);
+  border-radius: 10px;
+}
+
+section.faq article h3 {
+  font-family: var(--rokkitt);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--black);
+}
+
+section.faq article ul{
+  font-weight: 400;
+  font-size: 0.8rem;
+  font-family: var(--rokkitt);
+  color: var(--black);
+}
+
+/* Blog Grid */
+main section.blogSection .blogContainer {
+  text-align: center;
+}
+
+main section.blogSection .blogContainer article {
+  width: 80%;
+  margin-inline: auto;
+  border-radius: 16px 0px 16px 0px;
+  height: 250px;
+  box-shadow: 4px 4px 7px grey;
+  margin-block-end: 2rem;
+  cursor: pointer;
+}
+
+section.blogSection .blogContainer article img {
+  border-radius: 16px 0px 0px;
+  width: 100%;
+  height: 65%;
+}
+
+section.blogSection .blogContainer article p {
+  width: 85%;
+  margin-inline: auto;
+  text-align: left;
+  font-weight: 600;
+  text-decoration: underline;
+  font-family: var(--rokkitt);
+  font-size: .85rem;
+  padding-block: 1rem ;
+  height: 35%;
+}
+
+/* Contact Line Section */
+main section.contactLine aside.socialIne {
+  width: 90%;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section.contactLine aside.socialIne .socialAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section.contactLine aside.socialIne .socialAdd img {
+  width: 50%;
+  height: 40px;
+}
+
+section.contactLine aside.socialIne .socialAdd p {
+  font-size: 0.6rem;
+  font-family: var(--rokkitt);
+  font-weight: 500;
+  color: var(--navbar-bg);
+}
+
+section.contactLine form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-block: 2rem;
+}
+
+section.contactLine form label {
+  font-family: var(--rokkitt);
+  font-weight: 500;
+  color: var(--navbar-bg);
+  font-size: 0.9rem;
+}
+
+section.contactLine form input {
+  border-radius: 5px;
+  border: 1px solid var(--navbar-bg);
+  margin-block: .3rem 1rem;
+  height: 30px;
+  padding-inline: 1rem;
+  font-size: 0.9rem;
+  font-family: var(--rokkitt);
+}
+
+section.contactLine form textarea {
+  border-radius: 5px;
+  border: 1px solid var(--navbar-bg);
+  margin-block: .3rem 1rem;
+  padding-inline: .6rem;
+  font-size: 0.8rem;
+  font-family: var(--rokkitt);
+}
+
+section.contactLine form button {
+  align-self: flex-end;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem 1rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
 }
