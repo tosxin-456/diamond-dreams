@@ -12,7 +12,9 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-paystack": "^5.0.0",
     "react-router-dom": "^6.22.0",
+    "react-spinners": "^0.13.8",
     "swiper": "^11.0.6"
   },
   "devDependencies": {
