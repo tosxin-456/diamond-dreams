@@ -364,3 +364,139 @@ section.contactLine form button {
   border: none;
   background: var(--navbar-bg);
 }
+
+/* CTA Section */
+main section.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--header-bg);
+  opacity: .95;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+main section.cta {
+  position: relative;
+  border-radius: 15px;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 40vh;
+  background-image: url(./assets/images/gown.jpeg);
+  text-align: center;
+  padding-inline: 2rem;
+  height: 200px;
+  margin-block: 1rem;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+main section.cta p {
+  z-index: 2;
+  position: relative;
+  font-weight: 600;
+  font-family: var(--rokkitt);
+  font-size: 1.5rem;
+  line-height: 30px;
+  margin-block-end: 1rem;
+}
+
+main section.cta button {
+  font-weight: 600;
+  z-index: 5;
+  position: relative;
+  font-family: var(--opensans);
+  padding: .5rem;
+  border-radius: 5px;
+  color: inherit;
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
+}
+
+/* Footer Styles */
+footer {
+  background-color: var(--black);
+}
+
+footer.footer .footerWrap {
+  padding-block: 3rem;
+  color: var(--white);
+  font-family: var(--rokkitt);
+  line-height: 22px;
+}
+
+.footerWrap .footerLogo img {
+  width: 35%;
+}
+
+.footerWrap .footerLogo h2 {
+  font-weight: 600;
+  margin-block-end: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.footerWrap .footerLogo p {
+  font-size: .9rem;
+  margin-block-end: 1rem;
+}
+
+.footerWrap .footerLogo .footAdmin {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-block: 2rem;
+}
+
+.footerWrap .footerLogo .footAdmin img {
+  width: 10%;
+}
+
+.footerWrap .footerLogo .footAdmin p {
+  margin: unset;
+  font-size: 1.1rem;
+}
+
+.footerWrap .quickSocial {
+  display: flex;
+  margin-block: 2rem;
+}
+
+.footerWrap .quickSocial li {
+  margin-block: 1rem;
+  font-weight: 200;
+  font-size: 1rem;
+}
+
+.footerWrap .quickSocial li:first-child {
+  font-weight: 500;
+}
+
+.footerWrap .quickSocial .quickLinks {
+  flex: 1;
+}
+
+.footerWrap .quickSocial .socialLiks {
+  flex: 1;
+}
+
+.footerWrap .quickSocial .socialLiks li.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.footerWrap .quickSocial .socialLiks li.socialIcons img {
+  width: 13%;
+}
+
+.footerWrap p.copyRight {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+}

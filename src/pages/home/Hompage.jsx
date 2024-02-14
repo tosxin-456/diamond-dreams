@@ -21,6 +21,11 @@ import whiteCouple from '../../assets/images/whiteCouple.jpeg';
 import addBook from '../../assets/icons/address-book.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import mailIcon from '../../assets/icons/email.svg';
+import darkLogo from '../../assets/icons/dark-logo.svg';
+import lightAcc from '../../assets/icons/light_account.svg';
+import facebook from '../../assets/icons/facebook.svg';
+import instagram from '../../assets/icons/instagram.svg';
+import twitx from '../../assets/icons/twitter.svg';
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
@@ -273,7 +278,52 @@ const Home = () => {
             <button>Send</button>
           </form>
         </section>
+        <section className="cta">
+          <p>Experience the Elegance of Our Picked Pieces</p>
+          <button>Shop Now</button>
+        </section>
       </main>
+      <footer className='footer'>
+        <div className="footerWrap rule">
+          <div className="footerLogo">
+            <img src={darkLogo} alt="Logo" />
+            <h2>Diamonddreams events</h2>
+            <p>
+              From stunning gowns to captivating accessories, our selection offers both purchasing and rental options, ensuring every bride finds her perfect match.
+            </p>
+            <div className="footAdmin">
+              <img src={lightAcc} alt="Admin" />
+              <p>Admin</p>
+            </div>
+          </div>
+          <hr />
+          <div className="quickSocial">
+            <ul className="quickLinks">
+              <li>Quick Links</li>
+              <li>About us</li>
+              <li>Testimonials</li>
+              <li>FAQs</li>
+              <li>Shop</li>
+            </ul>
+            <ul className="socialLiks">
+              <li>Follow us</li>
+              <li className='socialIcons'>
+                <img src={facebook} alt="Facebook" />
+                <p>Facebook</p>
+              </li>
+              <li className='socialIcons'>
+                <img src={instagram} alt="Instagram" />
+                <p>Instagram</p>
+              </li>
+              <li className='socialIcons'>
+                <img src={twitx} alt="Twitter" />
+                <p>Twitter</p>
+              </li>
+            </ul>
+          </div>
+          <p className='copyRight'>Copyright. All Rights Reserved</p>
+        </div>
+      </footer>
     </>
   );
 }
