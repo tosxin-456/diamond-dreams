@@ -9,11 +9,12 @@ import instagram from '../assets/icons/instagram.svg';
 import twitx from '../assets/icons/twitter.svg';
 
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [currentHeader, setCurrentHeader] = useState("one");
   const [toggleNav, setToggleNav] = useState(false);
+  const location = useLocation();
 
   const handleNavToggle = () => {
     setToggleNav(!toggleNav);
@@ -22,14 +23,24 @@ const Navbar = () => {
   useEffect(() => {
     const headers = ["one", "two", "three"];
     let currentIndex = 0;
-
-    const interval = setInterval(() => {
-      currentIndex = (currentIndex + 1) % headers.length;
-      setCurrentHeader(headers[currentIndex]);
-    }, 5000); 
-
+    let interval;
+  
+    if (!location.pathname.includes('/Shop') && !location.pathname.includes('/Blog')) {
+      interval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % headers.length;
+        setCurrentHeader(headers[currentIndex]);
+      }, 5000);
+    }
+  
+    // Update currentHeader based on location.pathname
+    if (location.pathname.includes('/Shop')) {
+      setCurrentHeader("shop");
+    } else if (location.pathname.includes('/Blog')) {
+      setCurrentHeader("blog");
+    }
+  
     return () => clearInterval(interval);
-  }, []); 
+  }, [location.pathname]);
 
   return (
     <>
@@ -44,13 +55,13 @@ const Navbar = () => {
                 alt="Close" 
               />
               <ul>
-                <li>Home</li>
-                <li>Shop</li>
-                <li>Our Blog</li>
-                <li>Contact us</li>
-                <li>Our academy</li>
-                <li>Planning</li>
-                <li><img src={cartIcon} alt="" /></li>
+                <li><NavLink onClick={() => {handleNavToggle(); Window.reload()}} to='/'>Home</NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Shop'>Shop</NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Blog'>Our Blog</NavLink></li>
+                <li><NavLink onClick={handleNavToggle}>Contact us</NavLink></li>
+                <li><NavLink onClick={handleNavToggle}>Our academy</NavLink></li>
+                <li><NavLink onClick={handleNavToggle}>Planning</NavLink></li>
+                <li><NavLink onClick={handleNavToggle}><img src={cartIcon} alt="" /></NavLink></li>
               </ul>
             </div>
           </nav>
@@ -70,10 +81,11 @@ const Navbar = () => {
             </ul>
           </nav>
           <div className="landContainer rule">
-            {currentHeader === "one" && <p>Add a Touch of Glamour to Your Wedding</p>}
-            {currentHeader === "two" && <p>Your gateway to wedding expertise, creativity and professional connections</p>}
-            {currentHeader === "three" && <p>Creating seamless, unforgettable moments for your special day</p>}
-            <button>Shop Now</button>
+            {currentHeader === "one" && <><p>Add a Touch of Glamour to Your Wedding</p> <button>Shop Now</button></>}
+            {currentHeader === "two" && <><p>Your gateway to wedding expertise, creativity and professional connections</p> <button>Shop Now</button></>}
+            {currentHeader === "three" && <><p>Creating seamless, unforgettable moments for your special day</p> <button>Shop Now</button></>}
+            {currentHeader === 'shop' && <p>Shop</p>}
+            {currentHeader === 'blog' && <p>Blog</p>}
           </div>
         </div>
       </header>

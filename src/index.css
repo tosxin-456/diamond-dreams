@@ -88,6 +88,21 @@ header.homeHeader.three {
   background-image: url(./assets/images/event.jpeg);
 }
 
+header.homeHeader.shop {
+  background-image: url(./assets/images/shop.jpeg);
+}
+
+header.homeHeader.blog {
+  background-image: url(./assets/images/wedding.jpeg);
+}
+
+header.homeHeader.shop .landContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 header.homeHeader::before {
   content: "";
   position: absolute;
