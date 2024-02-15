@@ -13,7 +13,7 @@ import couple2 from '../../assets/images/couple2.png';
 import couple3 from '../../assets/images/couple3.jpg';
 import couple4 from '../../assets/images/couple4.jpg';
 
-import academyPic from '../../assets/images/expect.png';
+import academyPic from '../../assets/icons/expect.svg';
 import whiteCouple from '../../assets/images/whiteCouple.jpeg';
 
 // Social Icons

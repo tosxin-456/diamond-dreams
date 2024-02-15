@@ -563,7 +563,7 @@ footer.footer .footerWrap {
   font-size: 1rem;
 }
 
-/* SHOP */
+/* SHOP Styles */
 main section.shopCta {
   background-image: url(./assets/images/bride1.jpeg);
 }
@@ -589,4 +589,69 @@ main section.shopCta button {
   font-size: 0.8rem;
   border: none;
   background: var(--navbar-bg);
+}
+
+/* Blog Styles */
+section.blogSectionOne h2 {
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-block-end: .5rem;
+}
+
+section.blogSectionOne p#date {
+  opacity: 0.8;
+  font-weight: 400;
+  margin-block: .3rem;
+}
+
+section.blogSectionOne span {
+  font-weight: 600;
+}
+
+section.blogSectionOne .author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-style: italic;
+}
+
+section.blogSectionOne .author .authorPic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-image: url(./assets/images/person1.jpeg);
+}
+
+section.blogSectionOne .author p {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+section.blogSectionOne article .blogPic {
+  margin-block: 1.5rem;
+  width: 100%;
+  height: 45vh;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-image: url(./assets/images/whitCouple.jpeg);
+}
+
+section.blogSectionOne article .likDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-block: 1.5rem;
+  gap: .5rem;
+}
+
+
+
+section.blogSectionOne article .likDiv span {
+  opacity: 0.8;
+  font-weight: 400;
+  font-family: var(--opensans);
+  font-size: 0.8rem;
 }
