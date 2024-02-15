@@ -67,6 +67,36 @@ img {
   margin-inline: auto;
 }
 
+.cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--header-bg);
+  opacity: .95;
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.cta {
+  position: relative;
+  border-radius: 15px;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 40vh;
+  text-align: center;
+  padding-inline: 2rem;
+  height: 200px;
+  margin-block: 1rem;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Mobile Styles */
 /* Header Styles */
 header.homeHeader {
@@ -92,15 +122,20 @@ header.homeHeader.shop {
   background-image: url(./assets/images/shop.jpeg);
 }
 
+header.homeHeader.shop .landContainer{
+  display: flex;
+  justify-content: center;
+  padding-block-start: 3rem;
+}
+
 header.homeHeader.blog {
   background-image: url(./assets/images/wedding.jpeg);
 }
 
-header.homeHeader.shop .landContainer{
+header.homeHeader.blog .landContainer{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  padding-block-start: 3rem;
 }
 
 header.homeHeader::before {
@@ -420,38 +455,11 @@ section.contactLine form button {
 }
 
 /* CTA Section */
-main section.cta::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: var(--header-bg);
-  opacity: .95;
-  z-index: 1;
-  border-radius: 15px;
-}
-
-main section.cta {
-  position: relative;
-  border-radius: 15px;
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 40vh;
+main section.homeCta {
   background-image: url(./assets/images/gown.jpeg);
-  text-align: center;
-  padding-inline: 2rem;
-  height: 200px;
-  margin-block: 1rem;
-  color: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-main section.cta p {
+main section.homeCta p {
   z-index: 2;
   position: relative;
   font-weight: 600;
@@ -461,7 +469,7 @@ main section.cta p {
   margin-block-end: 1rem;
 }
 
-main section.cta button {
+main section.homeCta button {
   font-weight: 600;
   z-index: 5;
   position: relative;
@@ -553,4 +561,32 @@ footer.footer .footerWrap {
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
+}
+
+/* SHOP */
+main section.shopCta {
+  background-image: url(./assets/images/bride1.jpeg);
+}
+
+main section.shopCta p {
+  z-index: 2;
+  position: relative;
+  font-weight: 600;
+  font-family: var(--rokkitt);
+  font-size: 1.5rem;
+  line-height: 30px;
+  margin-block-end: 1rem;
+}
+
+main section.shopCta button {
+  font-weight: 600;
+  z-index: 5;
+  position: relative;
+  font-family: var(--opensans);
+  padding: .5rem;
+  border-radius: 5px;
+  color: inherit;
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
 }

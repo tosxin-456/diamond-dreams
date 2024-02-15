@@ -247,7 +247,7 @@ const Home = () => {
           <button>Send</button>
         </form>
       </section>
-      <section className="cta">
+      <section className="cta homeCta">
         <p>Experience the Elegance of Our Picked Pieces</p>
         <button>Shop Now</button>
       </section>
