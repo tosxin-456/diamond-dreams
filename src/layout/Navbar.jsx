@@ -25,7 +25,7 @@ const Navbar = () => {
     let currentIndex = 0;
     let interval;
   
-    if (!location.pathname.includes('/Shop') && !location.pathname.includes('/Blog')) {
+    if (!location.pathname.includes('/Shop') && !location.pathname.includes('/Blog') && !location.pathname.includes('/Contact') && !location.pathname.includes('/Academy') && !location.pathname.includes('/Planning') && !location.pathname.includes('/Cart'))  {
       interval = setInterval(() => {
         currentIndex = (currentIndex + 1) % headers.length;
         setCurrentHeader(headers[currentIndex]);
@@ -37,6 +37,14 @@ const Navbar = () => {
       setCurrentHeader("shop");
     } else if (location.pathname.includes('/Blog')) {
       setCurrentHeader("blog");
+    } else if (location.pathname.includes('/Contact')) {
+      setCurrentHeader("contact");
+    } else if (location.pathname.includes('/Academy')) {
+      setCurrentHeader("academy");
+    } else if (location.pathname.includes('/Planning')) {
+      setCurrentHeader("planning");
+    } else if (location.pathname.includes('/Cart')) {
+      setCurrentHeader("cart");
     }
   
     return () => clearInterval(interval);
@@ -55,13 +63,13 @@ const Navbar = () => {
                 alt="Close" 
               />
               <ul>
-                <li><NavLink onClick={() => {handleNavToggle(); Window.reload()}} to='/'>Home</NavLink></li>
+                <li><NavLink onClick={() => Window.reload()} to='/'>Home</NavLink></li>
                 <li><NavLink onClick={handleNavToggle} to='Shop'>Shop</NavLink></li>
                 <li><NavLink onClick={handleNavToggle} to='Blog'>Our Blog</NavLink></li>
-                <li><NavLink onClick={handleNavToggle}>Contact us</NavLink></li>
-                <li><NavLink onClick={handleNavToggle}>Our academy</NavLink></li>
-                <li><NavLink onClick={handleNavToggle}>Planning</NavLink></li>
-                <li><NavLink onClick={handleNavToggle}><img src={cartIcon} alt="" /></NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink></li>
+                <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
               </ul>
             </div>
           </nav>
@@ -85,7 +93,11 @@ const Navbar = () => {
             {currentHeader === "two" && <><p>Your gateway to wedding expertise, creativity and professional connections</p> <button>Shop Now</button></>}
             {currentHeader === "three" && <><p>Creating seamless, unforgettable moments for your special day</p> <button>Shop Now</button></>}
             {currentHeader === 'shop' && <p>Shop</p>}
-            {currentHeader === 'blog' && <p>Blog</p>}
+            {currentHeader === 'blog' && <p>Our Blog</p>}
+            {currentHeader === 'contact' && <p>Contact us</p>}
+            {currentHeader === 'academy' && <p>Our Academy</p>}
+            {currentHeader === 'planning' && <p>Planning</p>}
+            {currentHeader === 'cart' && <p>Cart</p>}
           </div>
         </div>
       </header>

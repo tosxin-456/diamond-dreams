@@ -4,8 +4,11 @@ import {
   createRoutesFromElements,
   RouterProvider
 } from 'react-router-dom';
+
 import Navbar from "./layout/Navbar";
+import AcademyWrap from './pages/academy/Academy';
 import BlogWrap from './pages/blog/Blog';
+import ContactWrap from './pages/contacts/Contact';
 import Home from "./pages/home/Hompage";
 import ShopWrap from './pages/shop/Shop';
 
@@ -16,6 +19,8 @@ const router = createBrowserRouter(
         <Route index element={<Home/>}/>
         <Route path='Shop' element={<ShopWrap/>}/>
         <Route path='Blog' element={<BlogWrap/>} />
+        <Route path='Contact' element={<ContactWrap/>} />
+        <Route path='Academy' element={<AcademyWrap/>} />
       </Route>
     </Route>
   )
