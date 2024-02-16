@@ -711,3 +711,89 @@ section .oneOfUs {
   border-radius: 0px 10px 10px 0px;
   margin-block: 1rem;
 }
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  display: none;
+}
+
+.swiper-pagination {
+  position: unset;
+  margin-block-start: 1.5rem;
+}
+
+.swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--navbar-bg);
+}
+
+.swiper-button-prev, .swiper-button-next {
+  position: unset;
+  top: unset;
+  width: unset;
+  height: unset;
+  margin: unset;
+}
+
+/* Academy Form */
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-block: .5rem;
+  position: relative;
+}
+
+.form-fields label {
+  font-family: var(--rokkitt);
+  font-weight: 500;
+  color: var(--navbar-bg);
+  font-size: 1rem;
+}
+
+.form-fields input {
+  border-radius: 5px;
+  border: 1px solid var(--navbar-bg);
+  margin-block: .3rem 1rem;
+  height: 30px;
+  padding-inline: 1rem;
+  font-size: 0.9rem;
+  font-family: var(--rokkitt);
+}
+
+.form-fields button {
+  align-self: flex-end;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem 1rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
+}
+
+.radioGroup {
+  display: flex;
+  align-items: center;
+  margin-block: .5rem 1.5rem;
+}
+
+.radioGroup label {
+  margin-inline: .5rem 5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+input[type="radio"] {
+  margin: unset;
+}
+
+.butSwipNAv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,30 +1,24 @@
-import React, { useState, useRef } from 'react';
-import SwiperCore from 'swiper';
+import { useState } from 'react';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
-SwiperCore.use([Autoplay, Navigation]);
+const AcademyWrap = () => {
+  const [swiper, setSwiper] = useState();
 
-const AcademyWrap = () => {  
-  // const [collections, setCollections] = useState([
-  //   // { id: 3, image: cart, title: 'Bag' },
-  // ]);
+  const handleSlideChange = (e) => {
+    e.preventDefault();
+    swiper.slideNext();
+  }
 
-  const handleSlideChange = (direction, swiperRef) => {
-    const activeIndex = swiperRef.current.swiper.activeIndex;
-    let newIndex = activeIndex;
-
-    if (direction === 'next') {
-      newIndex = (newIndex + 1) % collections.length;
-    } else if (direction === 'prev') {
-      newIndex = (newIndex - 1 + collections.length) % collections.length;
+  const handlePrevClick = () => {
+    if (swiper && swiper.activeIndex > 0) {
+      swiper.slidePrev();
     }
-
-    swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
 
   return (
@@ -86,17 +80,56 @@ const AcademyWrap = () => {
           <div className="oneOfUs"></div>
           <section className='contactLine'>
             <h2>Enroll Now!</h2>
-            <form>
-              <label htmlFor="name">Name</label>
-              <input type="text" id='name' />
-              <label htmlFor="phone">Phone</label>
-              <input type="number" id='phone' />
-              <label htmlFor="email">Email</label>
-              <input type="email" id='email' />
-              <label htmlFor="Address">Address</label>
-              <input type="text" id="Address" />
-              <button>Next</button>
-            </form>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={50}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              onSwiper={(instance) => setSwiper(instance)}
+            >
+              <form>
+                <SwiperSlide>
+                  <div className="form-fields">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" id='name' />
+                    <label htmlFor="phone">Phone</label>
+                    <input type="number" id='phone' />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" id='email' />
+                    <label htmlFor="Address">Address</label>
+                    <input type="text" id="Address" />
+                    <button className="swiper-button-next" onClick={handleSlideChange}>Next</button>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="form-fields">
+                    <label htmlFor="age">Age</label>
+                    <input type="text" id='age'/>
+                    <label htmlFor="marital">Marital Status</label>
+                    <div className="radioGroup">
+                      <input type="radio" name="Marital Status" id="single" />
+                      <label htmlFor="single">Single</label>
+                      <input type="radio" name="Marital Status" id="married" />
+                      <label htmlFor="married">Married</label>
+                    </div>
+                    <label htmlFor="experience">Experience Level</label>
+                    <div className="radioGroup">
+                      <input type="radio" name="Experience Level" id="beginner" />
+                      <label htmlFor="beginner">Beginner</label>
+                      <input type="radio" name="Experience Level" id="intermediate" />
+                      <label htmlFor="intermediate">Intermediate</label>
+                    </div>
+                    <label htmlFor="expectation">Expectation</label>
+                    <input type="text" id='expectation'/>
+                    <div className="butSwipNAv">
+                      <button onClick={handlePrevClick}>Prev</button>
+                      <button>Done</button>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </form>
+            </Swiper>
           </section>
         </article>
       </section>
