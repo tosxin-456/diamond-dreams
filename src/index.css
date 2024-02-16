@@ -712,7 +712,7 @@ section .oneOfUs {
   margin-block: 1rem;
 }
 
-.swiper-button-prev::after, .swiper-button-next::after {
+.acadFormSwiPer .swiper-button-prev::after, .acadFormSwiPer .swiper-button-next::after {
   display: none;
 }
 
@@ -730,7 +730,7 @@ section .oneOfUs {
   background: var(--navbar-bg);
 }
 
-.swiper-button-prev, .swiper-button-next {
+.acadFormSwiPer .swiper-button-prev, .acadFormSwiPer .swiper-button-next {
   position: unset;
   top: unset;
   width: unset;

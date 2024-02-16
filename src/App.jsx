@@ -10,6 +10,7 @@ import AcademyWrap from './pages/academy/Academy';
 import BlogWrap from './pages/blog/Blog';
 import ContactWrap from './pages/contacts/Contact';
 import Home from "./pages/home/Hompage";
+import PlanWrap from './pages/planning/Planning';
 import ShopWrap from './pages/shop/Shop';
 
 const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         <Route path='Blog' element={<BlogWrap/>} />
         <Route path='Contact' element={<ContactWrap/>} />
         <Route path='Academy' element={<AcademyWrap/>} />
+        <Route path='Planning' element={<PlanWrap/>} />
       </Route>
     </Route>
   )

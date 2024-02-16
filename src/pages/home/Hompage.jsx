@@ -36,7 +36,7 @@ const Home = () => {
     { id: 3, image: cart, title: 'Bag' },
   ]);
 
-  const testimony = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'")
+  const [testimony, setTestimony] = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'");
 
   const [couple, setCouple] = useState([
     { id: 1, image: couple4, title: testimony },
@@ -97,7 +97,7 @@ const Home = () => {
             // }}
           >
             {collections.map((collection) => (
-              <SwiperSlide key={collection.id}>
+              <SwiperSlide key={collection.id}> 
                 <img src={collection.image} alt={collection.title} />
                 <p>{collection.title}</p>
               </SwiperSlide>
