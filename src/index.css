@@ -589,13 +589,18 @@ footer.footer .footerWrap {
   flex: 1;
 }
 
-.footerWrap .quickSocial .socialLiks li.socialIcons {
+.footerWrap .quickSocial .socialLiks li.socialIcons, a.socialLinkLink {
   display: flex;
   gap: 1rem;
 }
 
 .footerWrap .quickSocial .socialLiks li.socialIcons img {
   width: 13%;
+}
+
+.socialLiks li.socialIcons a.socialLinkLink img {
+  width: 96% !important;
+  height: 100%;
 }
 
 .footerWrap p.copyRight {

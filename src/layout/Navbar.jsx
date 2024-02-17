@@ -9,7 +9,7 @@ import instagram from '../assets/icons/instagram.svg';
 import twitx from '../assets/icons/twitter.svg';
 
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [currentHeader, setCurrentHeader] = useState("one");
@@ -129,8 +129,10 @@ const Navbar = () => {
             <ul className="socialLiks">
               <li>Follow us</li>
               <li className='socialIcons'>
-                <img src={facebook} alt="Facebook" />
-                <p>Facebook</p>
+                <Link to='https://web.facebook.com/diamondreamsevents' target="_blank" className='socialLinkLink'>
+                  <img src={facebook} alt="Facebook" />
+                  <p>Facebook</p>
+                </Link>
               </li>
               <li className='socialIcons'>
                 <img src={instagram} alt="Instagram" />
