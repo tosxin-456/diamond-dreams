@@ -21,6 +21,46 @@ const BlogWrap = () => {
           </div>
         </article>
       </section>
+      <section className="blogSectionOne">
+        <h2>Related:</h2>
+        <article className='relateBlog'>
+          <div className="relatedPics"></div>
+          <div className="relateAbout">
+            <p><u>Choosing Wedding Colors: Trends, Meanings, and Combinations</u></p>
+            <span>December 6, 2023</span>
+          </div>
+        </article>
+        <article className='relateBlog'>
+          <div className="relatedPics"></div>
+          <div className="relateAbout">
+            <p><u>Choosing Wedding Colors: Trends, Meanings, and Combinations</u></p>
+            <span>December 6, 2023</span>
+          </div>
+        </article>
+      </section>
+      <section className='contactLine'>
+        <h2>Leave a Reply</h2>
+        <form>
+          <label htmlFor="name">Name</label>
+          <input type="text" id='name' />
+          <label htmlFor="email">Email</label>
+          <input type="email" id='email' />
+          <label htmlFor="message">Comment</label>
+          <textarea name="" id="message" cols="20" rows="4"></textarea>
+          <button>Post</button>
+        </form>
+      </section>
+      <section className='CommSect'>
+        <h2>Comments</h2>
+        <article>
+          <h3>Chioma</h3>
+          <p>
+            “Thank you for these tips! We're torn between an outdoor garden venue and a historic mansion. Any advice on weighing our options?
+          </p>
+          <p className='p2'>December 16, 2023 At 12:00Pm</p>
+          <p className='p3'>Add a comment</p>
+        </article>
+      </section>
     </>
   );
 }
