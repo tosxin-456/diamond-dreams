@@ -5,6 +5,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+SwiperCore.use([Autoplay, Navigation]);
 
 // Pic Imports
 import gown1 from '../../assets/images/gown1.jpeg';
@@ -14,7 +15,6 @@ import gown2 from '../../assets/images/gown2.jpg';
 import bracelet from '../../assets/images/bracelet1.jpg';
 import bouquet2 from '../../assets/images/bouquet2.jpg';
 
-SwiperCore.use([Autoplay, Navigation]);
 
 const ShopWrap = () => {
   const [collections, setCollections] = useState([
