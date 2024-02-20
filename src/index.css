@@ -706,7 +706,7 @@ article.relateBlog {
   border-radius: 15px 0px 15px 0px;
   margin-block: 4rem 2rem;
   /* height: 300px; */
-  box-shadow: 2px 1px 2px grey;
+  box-shadow: 1px 1px 10px grey;
 }
 
 article.relateBlog .relatedPics {
@@ -865,4 +865,110 @@ input[type="radio"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Cart Styles */
+/* Empty Section */
+section.emptyCartSect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section.emptyCartSect .cartImgDiv {
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 2px 4px 4px hsla(0, 0%, 0%, 0.07);
+  margin-block-end: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.emptyCartSect .cartImgDiv img {
+  width: 100%;
+}
+
+section.emptyCartSect button{
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block-start: 2rem;
+}
+
+/* Full Cart Section */
+section.fullCart {
+  border-radius: 20px;
+  margin-block: 2rem;
+  box-shadow: -1px 0px 4px grey;
+  padding: unset;
+}
+
+section.fullCart .itemPic {
+  background-image: url(./assets/images/gown1.jpeg);
+  height: 35vh;
+  border-radius: 20px 20px 20px 0px;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+section.fullCart .itemDecrip {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-family: var(--rokkitt);
+  padding-block: 2rem;
+}
+
+section.fullCart .itemDecrip h2 {
+  text-align: inherit;
+  margin-block-end: .5rem;
+  font-size: 1.2rem;
+}
+
+section.fullCart .itemDecrip p {
+  line-height: unset;
+  margin-block-end: .5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+section.fullCart .itemDecrip .itemPrice {
+  margin-block: .5rem;
+}
+
+section.fullCart .itemDecrip .itemQuant .itemAddSub {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+section.fullCart .itemDecrip button {
+  width: 100%;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 1rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block-start: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+section.fullCart .itemDecrip button img {
+  width: 10%;
 }

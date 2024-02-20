@@ -8,6 +8,7 @@ import {
 import Navbar from "./layout/Navbar";
 import AcademyWrap from './pages/academy/Academy';
 import BlogWrap from './pages/blog/Blog';
+import CartWrapper from './pages/cart/Cart';
 import ContactWrap from './pages/contacts/Contact';
 import Home from "./pages/home/Hompage";
 import PlanWrap from './pages/planning/Planning';
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         <Route path='Contact' element={<ContactWrap/>} />
         <Route path='Academy' element={<AcademyWrap/>} />
         <Route path='Planning' element={<PlanWrap/>} />
+        <Route path='Cart' element={<CartWrapper/>} />
       </Route>
     </Route>
   )
