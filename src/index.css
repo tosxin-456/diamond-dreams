@@ -416,10 +416,14 @@ main section.blogSection .blogContainer article {
   cursor: pointer;
 }
 
-section.blogSection .blogContainer article img {
+section.blogSection .blogContainer article .imgOla {
   border-radius: 16px 0px 0px;
   width: 100%;
   height: 65%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(./assets/images/whiteCouple.jpeg);
 }
 
 section.blogSection .blogContainer article p {
@@ -994,6 +998,32 @@ section.fullCart .itemDecrip button img {
   header.homeHeader .headerContainer {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+
+  header.homeHeader .headerContainer .landContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    /* width: 100%; */
+    text-align: unset;
+    /* margin-inline-start: 4.3rem; */
+  }
+
+  header.homeHeader .headerContainer .landContainer p {
+    line-height: 47px;
+    font-size: 2.3rem;
+    width: 50%;
+  }
+
+  header.homeHeader .landContainer button {
+    padding: 0.8rem 1.3rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: var(--navbar-bg);
   }
 
   /* Navbar Styles */
@@ -1028,5 +1058,107 @@ section.fullCart .itemDecrip button img {
 
   nav.navbar ul.cartNav img {
     width: 25px;
+  }
+
+  /* MAin Styles */
+  main section h2 {
+    font-size: 1.7rem;
+  }
+
+  main section p {
+    line-height: 35px;
+    font-size: .9rem;
+  }
+
+  main section ul {
+    line-height: 30px;
+    font-size: .9rem;
+  }
+
+  main section.OurColLect {
+    background-image: url(./assets/icons/rainbow.svg);
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+  }
+ 
+  main section.WhyChoose {
+    background-image: url(./assets/icons/rainbowRight.svg);
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+  } 
+
+  main section.CouplesSect {
+    background-image: url(./assets/icons/rainbow.svg), url(./assets/icons/rainbowRight.svg);
+    background-repeat: no-repeat;
+    background-position: 0% 0%, 100% 100%;
+  }
+
+  main section.CouplesSect .collectionSwiper {
+    width: 70%;
+    margin-inline: auto;
+  }
+
+  main section.CouplesSect .collectionSwiper img {
+    width: 280px;
+    height: 350px;
+  }
+
+  main section.CouplesSect .collectionSwiper p {
+    width: 70%;
+    margin-inline: auto;
+    text-align: left;
+    background-color: #22181C0A;
+    padding: .5rem 2rem;
+    border-radius: 15px;
+    line-height: 24px;
+  }
+
+  main section.academySection {
+    background-image: url(./assets/icons/rainbow.svg), url(./assets/icons/rainbowRight.svg);
+    background-repeat: no-repeat;
+    background-position: 0% 0%, 100% 75%;
+  }
+
+  main section.academySection img.epectPic {
+    width: 15%;
+  }
+
+  main section.faq {
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 4rem;
+  }
+
+  section.faq .firstArtSect, section.faq .secArtSect {
+    display: flex;
+    margin-block-start: 2rem;
+    gap: 6rem;
+  }
+
+  main section.faq article {
+    padding: 1.5rem 2rem;
+    line-height: 24px;
+    box-shadow: 1px 2px 3px gray;
+  }
+
+  main section.faq .firstArtSect article:nth-child(1) {
+    background-image: url(./assets/icons/rainbow.svg);
+    background-repeat: no-repeat;
+    background-position: 0% 33%;
+  }
+
+  main section.faq .firstArtSect article:nth-child(2) {
+    background-image: url(./assets/icons/rainbowRight.svg);
+    background-repeat: no-repeat;
+    background-position: 100% 66%;
+  }
+
+  main section.faq article ul {
+    line-height: 24px;
+  }
+
+  main section.blogSection .blogContainer {
+    display: flex;
+    gap: 3rem;
   }
 }

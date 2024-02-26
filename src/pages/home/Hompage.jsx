@@ -75,13 +75,13 @@ const Home = () => {
 
   return (
     <>
-      <section>
+      <section className='AboutSect'>
         <h2>About Us</h2>
         <p>
           Welcome to our wedding hub, where dreams come to life! Explore an exquisite collection of wedding dresses and accessories available for purchase or rent, curated to reflect individual styles and enhance your special day. Our comprehensive event planning services ensure a seamless and unforgettable wedding experience tailored to your unique vision. Additionally, our academy offers expert guidance and courses for aspiring wedding planners, empowering enthusiasts to craft extraordinary celebrations. Join us on this enchanting journey toward your perfect wedding day. Whether shopping for the perfect gown, planning your special day, or seeking to learn more, find everything you need in one place.
         </p>
       </section>
-      <section>
+      <section className='OurColLect'>
         <h2>Our Collections</h2>
         <div className='collectionSwiper'>
           <Swiper
@@ -107,7 +107,7 @@ const Home = () => {
           <button className="swiper-button-next" onClick={() => handleSlideChange('next', collectionSwiperRef)}></button>
         </div>
       </section>
-      <section>
+      <section className='WhyChoose'>
         <h2>Why Choose Us</h2>
         <ul>
           <li>
@@ -124,7 +124,7 @@ const Home = () => {
           </li>
         </ul>
       </section>
-      <section>
+      <section className='CouplesSect'>
         <h2>What do our couples say</h2>
         <div className='collectionSwiper'>
           <Swiper
@@ -181,41 +181,49 @@ const Home = () => {
       </section>
       <section className="faq">
         <h2>Frequently Asked Questions</h2>
-        <article>
-          <h3>What is the ordering process for wedding dresses or accessories?</h3>
-          <ul>
-            <li>The ordering process typically involves browsing our collection, selecting desired items, and placing an order either online or in-store.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Do you offer customization or alterations for dresses?</h3>
-          <ul>
-            <li>Yes, we provide customization and alterations to ensure your dress fits perfectly. Our skilled seamstresses will work with you to achieve your desired look.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>What is the timeframe for ordering and receiving wedding attire?</h3>
-          <ul>
-            <li>The timeframe can vary based on the specific item and alterations required. We recommend ordering your attire at least 6-9 months in advance to allow sufficient time for fittings and alterations.</li>
-          </ul>
-        </article>
-        <article>
-          <h3>Can I view and try on dresses or accessories before making a purchase?</h3>
-          <ul>
-            <li>Yes, we encourage customers to visit our store to view and try on dresses and accessories before making a purchase.</li>
-          </ul>
-        </article>
+        <div className="firstArtSect">
+          <article>
+            <h3>What is the ordering process for wedding dresses or accessories?</h3>
+            <ul>
+              <li>The ordering process typically involves browsing our collection, selecting desired items, and placing an order either online or in-store.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Do you offer customization or alterations for dresses?</h3>
+            <ul>
+              <li>Yes, we provide customization and alterations to ensure your dress fits perfectly. Our skilled seamstresses will work with you to achieve your desired look.</li>
+            </ul>
+          </article>
+        </div>
+        <div className="secArtSect">
+          <article>
+            <h3>What is the timeframe for ordering and receiving wedding attire?</h3>
+            <ul>
+              <li>The timeframe can vary based on the specific item and alterations required. We recommend ordering your attire at least 6-9 months in advance to allow sufficient time for fittings and alterations.</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Can I view and try on dresses or accessories before making a purchase?</h3>
+            <ul>
+              <li>Yes, we encourage customers to visit our store to view and try on dresses and accessories before making a purchase.</li>
+            </ul>
+          </article>
+        </div>
       </section>
       <section className="blogSection">
         <h2>Our Blog</h2>
         <div className="blogContainer">
           <article>
-            <img src={whiteCouple} alt="Blog Pic" />
+            <div className="imgOla"></div>
             <p>How to Choose the Perfect Wedding Venue</p>
           </article>
           <article>
-            <img src={whiteCouple} alt="Blog Pic" />
+            <div className="imgOla"></div>
             <p>Wedding Photography: Posing Ideas for the Perfect Shot</p>
+          </article>
+          <article>
+            <div className="imgOla"></div>
+            <p>Choosing Wedding Colors: Trends, Meanings, and Combinations</p>
           </article>
         </div>
       </section>
