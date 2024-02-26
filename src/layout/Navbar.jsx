@@ -14,6 +14,7 @@ import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
 const Navbar = () => {
   const [currentHeader, setCurrentHeader] = useState("one");
   const [toggleNav, setToggleNav] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
 
   const handleNavToggle = () => {
@@ -50,42 +51,81 @@ const Navbar = () => {
     return () => clearInterval(interval);
   }, [location.pathname]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <header className={`homeHeader ${currentHeader}`}>
         <div className="headerContainer">
-          <nav className={`dropNav ${toggleNav ? 'active' : ''}`}>
-            <div className="rule">
-              <img 
-                onClick={handleNavToggle}
-                className= "closIcon" 
-                src={closeIcon} 
-                alt="Close" 
-              />
-              <ul>
-                <li><NavLink onClick={() => Window.reload()} to='/'>Home</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Shop'>Shop</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Blog'>Our Blog</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink></li>
-                <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
-              </ul>
-            </div>
-          </nav>
+          {isMobile && (
+            <nav className={`dropNav ${toggleNav ? 'active' : ''}`}>
+              <div className="rule">
+                <img 
+                  onClick={handleNavToggle}
+                  className= "closIcon" 
+                  src={closeIcon} 
+                  alt="Close" 
+                />
+                <ul>
+                  <li><NavLink onClick={() => Window.reload()} to='/'>Home</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Shop'>Shop</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Blog'>Our Blog</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
+                </ul>
+              </div>
+            </nav>
+          )}
           <nav className="navbar rule">
             <ul className='topNav'>
               <li>
                 <img src={LightLogo} alt="Logo" />
                 <p>Diamonddreams Event</p>
               </li>
-              <li>
+              {isMobile && (<li>
                 <img 
                   src={navIcon} 
                   alt="Hamburger" 
                   onClick={handleNavToggle}
                 />
+              </li>)}
+            </ul>
+            <ul className="secondNav">
+              <li>
+                <NavLink onClick={() => Window.reload()} to='/'>Home</NavLink>
               </li>
+              <li>
+                <NavLink onClick={handleNavToggle} to='Shop'>Shop</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={handleNavToggle} to='Blog'>Our Blog</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink>
+              </li>
+              <li>
+                <NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink>
+              </li>
+            </ul>
+            <ul className='cartNav'>
+              <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
             </ul>
           </nav>
           <div className="landContainer rule">

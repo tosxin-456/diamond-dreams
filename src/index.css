@@ -263,10 +263,22 @@ nav.navbar {
   padding-block: 1.5rem;
 }
 
+header nav ul li a {
+  opacity: 0.5;
+}
+
+header nav ul li a.active {
+  opacity: 1;
+}
+
 nav.navbar ul.topNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+nav.navbar ul.secondNav, nav.navbar ul.cartNav {
+  display: none;
 }
 
 ul.topNav li {
@@ -971,4 +983,50 @@ section.fullCart .itemDecrip button {
 
 section.fullCart .itemDecrip button img {
   width: 10%;
+}
+
+/* DEsktop Styles */
+@media(min-width: 768px) {
+  header.homeHeader {
+    height: 93vh;
+  }
+
+  header.homeHeader .headerContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Navbar Styles */
+  nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  ul.topNav li p {
+    font-size: 1.1rem;
+  }
+
+  nav.navbar ul.secondNav {
+    display: flex;
+    gap: 1.2rem;
+    font-family: var(--opensans);
+  }
+
+  nav.navbar ul.secondNav li a {
+    border-bottom: 2px solid transparent;
+    padding: .3rem;
+  }
+
+  nav.navbar ul.secondNav li a.active, nav.navbar ul.secondNav li a:hover {
+    border-bottom: 2px solid white;
+  }
+
+  nav.navbar ul.cartNav {
+    display: flex;
+  }
+
+  nav.navbar ul.cartNav img {
+    width: 25px;
+  }
 }
