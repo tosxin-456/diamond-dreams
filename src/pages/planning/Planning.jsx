@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -7,11 +7,16 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 SwiperCore.use([Autoplay, Navigation]);
 
+// Social Icons
 import addBook from '../../assets/icons/address-book.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import mailIcon from '../../assets/icons/email.svg';
+import lightAddBook from '../../assets/icons/book-light.svg';
+import lightPhoneIcon from '../../assets/icons/phone-light.svg';
+import lightMailIcon from '../../assets/icons/light_email.svg';
 import event1 from '../../assets/images/event1.jpeg';
 import event2 from '../../assets/images/event2.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const PlanWrap = () => {
   const [collection, setCollection] = useState([
@@ -32,6 +37,24 @@ const PlanWrap = () => {
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
   const collectionSwiperRef = useRef(null);
+
+  const phoneNumber = "+234 7048346350";
+  const history = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -137,34 +160,51 @@ const PlanWrap = () => {
           <button className="swiper-button-next" onClick={() => handleSlide1Change('next', collectionSwiperRef)}></button>
         </div>
       </section>
-      <section className='contactLine'>
+      <section className="contactLine">
         <h2>Contact us</h2>
         <p>Contact our team to start planning your dream wedding today!</p>
-        <aside className="socialIne">
-          <div className="socialAdd">
-            <img src={addBook} alt="Contact" />
-            <p>Jos, Plateau State</p>
-          </div>
-          <div className="socialAdd">
-            <img src={phoneIcon} alt="Phone" />
-            <p>+234 07483463507</p>
-          </div>
-          <div className="socialAdd">
-            <img src={mailIcon} alt="Mail" />
-            <p>diamonddreams@gmail.com</p>
-          </div>
-        </aside>
-        <form>
-          <label htmlFor="name">Name</label>
-          <input type="text" id='name' />
-          <label htmlFor="phone">Phone</label>
-          <input type="number" id='phone' />
-          <label htmlFor="email">Email</label>
-          <input type="email" id='email' />
-          <label htmlFor="message">Message</label>
-          <textarea name="" id="message" cols="20" rows="4"></textarea>
-          <button>Send</button>
-        </form>
+        <div className="contactConTainer">
+          {isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={addBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={phoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={mailIcon} alt="Mail" />
+              <p>diamonddreams@gmail.com</p>
+            </div>
+          </aside>)}
+          {!isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={lightAddBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightPhoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightMailIcon} alt="Mail" />
+              <p>diamonddreams@gmail.com</p>
+            </div>
+          </aside>)}
+          <form>
+            {!isMobile && (<h3>Send us a Message</h3>)}
+            <label htmlFor="name">Name</label>
+            <input type="text" id='name' />
+            <label htmlFor="phone">Phone</label>
+            <input type="number" id='phone' />
+            <label htmlFor="email">Email</label>
+            <input type="email" id='email' />
+            <label htmlFor="message">Message</label>
+            <textarea name="" id="message" cols="20" rows="6"></textarea>
+            <button>Send</button>
+          </form>
+        </div>
       </section>
     </>
   );

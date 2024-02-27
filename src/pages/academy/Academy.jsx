@@ -74,7 +74,7 @@ const AcademyWrap = () => {
           </ul>
         </article>
       </section>
-      <section>
+      <section className='sectEnroll'>
         <h2>Become one of us</h2>
         <article className='acadFormSwiPer'>
           <div className="oneOfUs"></div>

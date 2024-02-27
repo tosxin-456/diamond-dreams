@@ -19,28 +19,30 @@ const CartWrapper = () => {
         <p>Browse our categories and discover the best</p>
         <button>Shop Now</button>
       </section> */}
-      <section className="fullCart rule">
-        <div className="itemPic"></div>
-        <div className="itemDecrip rule">
-          <h2><u>Ball gown</u></h2>
-          <div className="itemPrice">
-            <p>Price</p>
-            <p>100,000</p>
-          </div>
-          <div className="itemQuant">
-            <p>Quantity</p>
-            <div className="itemAddSub">
-              <img src={minusIcon} onClick={subtract} alt="Minus" className="minus" />
-              {count}
-              <img src={plusIcon} onClick={add} alt="Plus" className="plus" />
+      <div className="cartAllContain">
+        <section className="fullCart rule">
+          <div className="itemPic"></div>
+          <div className="itemDecrip rule">
+            <h2><u>Ball gown</u></h2>
+            <div className="itemPrice">
+              <p>Price</p>
+              <p>100,000</p>
             </div>
+            <div className="itemQuant">
+              <p>Quantity</p>
+              <div className="itemAddSub">
+                <img src={minusIcon} onClick={subtract} alt="Minus" className="minus" />
+                {count}
+                <img src={plusIcon} onClick={add} alt="Plus" className="plus" />
+              </div>
+            </div>
+            <button>
+              <img src={lightCartIcon} alt="Cart" />
+              Order
+            </button>
           </div>
-          <button>
-            <img src={lightCartIcon} alt="Cart" />
-            Order
-          </button>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }
