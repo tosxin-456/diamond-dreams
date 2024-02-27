@@ -26,7 +26,7 @@ const CartWrapper = () => {
             <h2><u>Ball gown</u></h2>
             <div className="itemPrice">
               <p>Price</p>
-              <p>100,000</p>
+              <p>₦ 100,000</p>
             </div>
             <div className="itemQuant">
               <p>Quantity</p>
