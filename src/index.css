@@ -698,7 +698,7 @@ section.blogSectionOne article .blogPic {
   height: 45vh;
   background-position: 50% 50%;
   background-size: cover;
-  background-image: url(./assets/images/whitCouple.jpeg);
+  /* background-image: url(./assets/images/whitCouple.jpeg); */
 }
 
 section.blogSectionOne article .likDiv {

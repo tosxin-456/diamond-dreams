@@ -14,6 +14,59 @@ import event1 from '../../assets/images/event1.jpeg';
 import event2 from '../../assets/images/event2.jpg';
 
 const PlanWrap = () => {
+ 
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false);
+  // Function to construct object
+const constructFormData = () => {
+  return {
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  };
+};
+
+// Function to handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setSending(true)
+  // Construct form data object
+  const formData = constructFormData();
+  
+  try {
+    // Perform fetching here, sending formData to the server
+    // Example:
+    const response = await fetch('https://diamondreams.onrender.com/contact-us', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    // Handle response
+    // Example:
+    if (response.ok) {
+      console.log('Form data submitted successfully');
+      // Reset form fields if needed
+      setName('');
+      setPhone('');
+      setEmail('');
+      setMessage('');
+      setSending(false); 
+    } else {
+      console.error('Failed to submit form data');
+    }
+  } catch (error) {
+    setSending(false); 
+    console.error('Error submitting form data:', error);
+  }
+};
+
   const [collection, setCollection] = useState([
     { id: 1, image: event1 },
     { id: 2, image: event2 },
@@ -154,16 +207,16 @@ const PlanWrap = () => {
             <p>diamonddreams@gmail.com</p>
           </div>
         </aside>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name</label>
-          <input type="text" id='name' />
+          <input type="text" id='name'value={name} onChange={e => setName(e.target.value)} />
           <label htmlFor="phone">Phone</label>
-          <input type="number" id='phone' />
+          <input type="number" id='phone' value={phone} onChange={e => setPhone(e.target.value)} />
           <label htmlFor="email">Email</label>
-          <input type="email" id='email' />
+          <input type="email" id='email' value={email} onChange={e => setEmail(e.target.value)} />
           <label htmlFor="message">Message</label>
-          <textarea name="" id="message" cols="20" rows="4"></textarea>
-          <button>Send</button>
+          <textarea name="" id="message" cols="20" rows="4" value={message} onChange={e => setMessage(e.target.value)}></textarea>
+          <button disabled={sending} >{sending ? 'Sending...' : 'Send'}</button>
         </form>
       </section>
     </>
