@@ -195,7 +195,7 @@ const AcademyWrap = () => {
                     <input type="text" id='expectation' value={expectation} onChange={e=>setExpectation(e.target.value)}/>
                     <div className="butSwipNAv">
                       <button onClick={handlePrevClick}>Prev</button>
-                      <button type='submit' disabled={submitting} >{submitting? 'Posting...' : 'Done'}</button>
+                      <button disabled={submitting} >{submitting? 'Posting...' : 'Done'}</button>
                     </div>
                   </div>
                 </SwiperSlide>
