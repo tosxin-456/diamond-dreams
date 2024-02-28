@@ -85,7 +85,6 @@ img {
   border-radius: 15px;
   background-position: 50% 50%;
   background-size: cover;
-  height: 40vh;
   text-align: center;
   padding-inline: 2rem;
   height: 200px;
@@ -122,7 +121,7 @@ header.homeHeader.shop {
   background-image: url(./assets/images/shop.jpeg);
 }
 
-header.homeHeader.shop .landContainer{
+header.homeHeader.shop .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -132,7 +131,7 @@ header.homeHeader.blog {
   background-image: url(./assets/images/wedding.jpeg);
 }
 
-header.homeHeader.blog .landContainer{
+header.homeHeader.blog .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -142,7 +141,7 @@ header.homeHeader.contact {
   background-image: url(./assets/images/contact-us.jpeg);
 }
 
-header.homeHeader.contact .landContainer{
+header.homeHeader.contact .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -152,7 +151,7 @@ header.homeHeader.academy {
   background-image: url(./assets/images/academy.jpeg);
 }
 
-header.homeHeader.academy .landContainer{
+header.homeHeader.academy .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -162,7 +161,7 @@ header.homeHeader.planning {
   background-image: url(./assets/images/planning.jpeg);
 }
 
-header.homeHeader.planning .landContainer{
+header.homeHeader.planning .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -172,7 +171,7 @@ header.homeHeader.cart {
   background-image: url(./assets/images/cart-bag.jpeg);
 }
 
-header.homeHeader.cart .landContainer{
+header.homeHeader.cart .landContainer {
   display: flex;
   justify-content: center;
   padding-block-start: 3rem;
@@ -619,10 +618,13 @@ footer.footer .footerWrap {
   height: 100%;
 }
 
-.footerWrap p.copyRight {
+p.copyRight {
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
+  color: var(--white);
+  font-family: var(--rokkitt);
+  padding-block-end: 2rem;
 }
 
 /* SHOP Styles */
@@ -651,6 +653,99 @@ main section.shopCta button {
   font-size: 0.8rem;
   border: none;
   background: var(--navbar-bg);
+}
+
+/* Shop Popup Styles */
+.selectedItem {
+  background: gray;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 40;
+  top: 0;
+}
+
+.selectedItem .shopPop {
+  display: flex;
+  position: absolute;
+  top: 400px;
+  width: 90%;
+  left: 5%;
+  height: 50vh;
+  align-items: center;
+  border-radius: 40px;
+  background-color: var(--white);
+}
+
+.selectedItem .shopPop .shopItem {
+  background-image: url(./assets/images/gown1.jpeg);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: 40%;
+  height: 100%;
+  border-radius: 40px 10px 10px 40px;
+}
+
+.selectedItem .shopPop .ItemInfo {
+  position: relative;
+  width: 50%;
+  margin-inline: auto;
+  font-family: var(--rokkitt);
+}
+
+.shopPop .ItemInfo img.closIc {
+  position: absolute;
+  top: -15px;
+  right: 0;
+}
+
+.shopPop .ItemInfo h2 {
+  font-size: 1rem;
+  margin-block-end: .5rem;
+}
+
+.shopPop .ItemInfo .buyRent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 1rem;
+  font-size: 0.8rem;
+  margin-block: 1rem;
+}
+
+.shopPop .ItemInfo .itemPrice {
+  margin-block-end: .5rem;
+}
+
+.shopPop .ItemInfo .itemQuant .itemAddSub {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-end: .5rem;
+}
+
+.shopPop .ItemInfo button {
+  width: 100%;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: .8rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block-start: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.shopPop .ItemInfo button img {
+  width: 14%;
 }
 
 /* Blog Styles */
@@ -989,6 +1084,122 @@ section.fullCart .itemDecrip button img {
   width: 10%;
 }
 
+/* Admin Styles */
+header.adminHeader {
+  background-color: var(--navbar-bg);
+  position: relative;
+}
+
+header.adminHeader nav.rule {
+  padding-block: 1.5rem;
+}
+
+header.adminHeader nav.rule ul.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+
+header.adminHeader nav.rule ul.topNav img.profImg {
+  width: 100%;
+}
+
+/* Admin Login */
+main section.adminLogin {
+  box-shadow: 0px 5px 27px 0px #00000012;
+  padding: 2rem 1rem;
+  margin-block: 3rem;
+}
+
+section.adminLogin form {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--rokkitt);
+  font-weight: 500;
+}
+
+section.adminLogin form p {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--rokkitt);
+  margin-block: 1rem;
+}
+
+section.adminLogin form input {
+  border-radius: 5px;
+  border: 1px solid var(--black);
+  font-family: var(--rokkitt);
+  margin-block: .3rem 1rem;
+  height: 30px;
+  padding-inline: 1rem;
+  font-size: 0.9rem;
+}
+
+section.adminLogin form label {
+  color: var(--black);
+  font-size: 0.9rem;
+}
+
+section.adminLogin form button {
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem 1rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.8rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+}
+
+/* Admin Dashboard */
+section.dashBoardSection h2 {
+  text-align: left;
+  margin-block-end: 3rem;
+}
+
+section.dashBoardSection .grid-icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-block: 2rem;
+  gap: 2rem;
+  font-family: var(--opensans);
+}
+
+section.dashBoardSection .grid-icons article {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  box-shadow: 0px 5px 27px 0px #00000012;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.grid-icons article img {
+  width: 15%;
+}
+
+.grid-icons article span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.grid-icons article button {
+  align-self: flex-start;
+  display: flex;
+  align-items: center; 
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 3px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+}
+
 /* DEsktop Styles */
 @media(min-width: 768px) {
   header.homeHeader {
@@ -1093,8 +1304,8 @@ section.fullCart .itemDecrip button img {
     background-position: 0% 0%, 100% 100%;
   }
 
-  main section.CouplesSect .collectionSwiper {
-    width: 70%;
+  main section .collectionSwiper {
+    width: 60%;
     margin-inline: auto;
   }
 
@@ -1162,3 +1373,247 @@ section.fullCart .itemDecrip button img {
     gap: 3rem;
   }
 }
+
+  section.contactLine .contactConTainer {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    height: 450px;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    margin-block: 1rem 4rem
+  }
+
+  section.contactLine .contactConTainer aside.socialIne {
+    width: 35%;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--navbar-bg);
+    border-radius: 0 15px 15px 0;
+    height: 100%;
+    margin-inline: unset;
+    padding-block: 2rem;
+    margin-block: unset;
+  }
+  
+  section.contactLine .contactConTainer aside.socialIne .socialAdd p {
+    font-size: .8rem;
+    font-family: var(--rokkitt);
+    font-weight: 500;
+    color: var(--white);
+  }
+
+
+  section.contactLine .contactConTainer form {
+    width: 53%;
+    height: 100%;
+    margin-inline: auto;
+    margin-block: unset;
+    padding-block: 1.5rem;
+  }
+
+  section.contactLine .contactConTainer form h3 {
+    text-align: center;
+    font-family: var(--rokkitt);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-block-end: 1.5rem;
+  }
+
+  section.contactLine form input {
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  section.contactLine form textarea {
+    font-size: 1.1rem;
+  }
+
+  /* CTA Section */
+  section.cta {
+    height: 53vh;
+    text-align: unset;
+    align-items: start;
+    font-size: 1.8rem;
+    width: 100%;
+  }
+
+  main section.cta p {
+    font-size: 2rem;
+    width: 50%;
+    line-height: 40px;
+  }
+
+  main section.homeCta button {
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+  }
+
+  /* Footer Styles */
+  footer.footer .footerWrap {
+    display: flex;
+  }
+
+  footer.footer .footerWrap .footerLogo {
+    width: 40%;
+    margin-inline-end: auto;
+  }
+
+  footer.footer .footerWrap .footerLogo img {
+    width: 25%;
+    text-align: center;
+  }
+
+  .footerWrap .footerLogo p {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  footer.footer .footerWrap .footerLogo .footAdmin img {
+    width: 7%;
+  }
+
+  footer.footer .footerWrap .footLineDiVide {
+    width: 0.5%;
+    border-left: 2px solid var(--faq-bg);
+  }
+
+  footer.footer .footerWrap .quickSocial {
+    width: 45%;
+    margin-inline: auto;
+  }
+
+  .footerWrap .quickSocial .socialLiks li.socialIcons img {
+    width: 50%;
+  }
+
+  /* Blog STyles */
+  main section.blogSectionOne {
+    background-image: url(./assets//icons/rainbowRight.svg), url(./assets/icons/rainbow.svg);
+    background-repeat: no-repeat;
+    background-position: 100% 0%, 0% 100%;
+  }
+
+  section.blogSectionOne article .blogPic {
+    margin-block: 1.5rem;
+    width: 100%;
+    height: 70vh;
+  }
+
+  section.blogSectionOne .relateArtiCles {
+    display: flex;
+    gap: 2rem;
+  }
+
+  main section.contactLine {
+    margin-block: 1rem;
+  }
+
+  section.contactLine form.formOne {
+    width: 100%;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    border-radius: 2px;
+  }
+
+  section.contactLine form .replyWrap {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-inline: auto;
+    margin-block: 3rem;
+  }
+
+  /* Academy Styles */
+  section.sectEnroll article.acadFormSwiPer {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    height: 500px;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    margin-block-end: 4rem
+  }
+
+  section.sectEnroll article.acadFormSwiPer .oneOfUs {
+    width: 35%;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--navbar-bg);
+    border-radius: 0 15px 15px 0;
+    height: 100%;
+    margin-inline: unset;
+    margin-block: unset;
+  }
+
+  section.sectEnroll article.acadFormSwiPer section.contactLine {
+    width: 53%;
+    height: 100%;
+    margin-inline: auto;
+    margin-block: unset;
+    padding-block: 1.5rem;
+  }
+
+  /* Cart Styles */
+  main .cartAllContain {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Shop Popup Styles */
+.selectedItem .shopPop {
+  display: flex;
+  position: absolute;
+  top: 400px;
+  width: 90%;
+  margin-inline: auto;
+  left: 5%;
+  height: 75vh;
+}
+
+.shopPop .ItemInfo .buyRent {
+  width: 30%;
+  font-size: 1rem;
+}
+
+.shopPop .ItemInfo button {
+  width: 100%;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 1rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block-start: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.shopPop .ItemInfo button img {
+  width: 6%;
+}
+
+/* admin Styles */
+/* Admin Login */
+main section.adminLogin {
+  width: 50%;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  margin-block: 4rem;
+}
+
+/* Admin Dashboard */
+section.dashBoardSection h2 {
+  text-align: left;
+  margin-block-end: 3rem;
+}
+
+section.dashBoardSection .grid-icons {
+  grid-template-columns: repeat(4, 1fr);
+  margin-block: 2rem 3rem;
+  gap: 2rem;
+}
+

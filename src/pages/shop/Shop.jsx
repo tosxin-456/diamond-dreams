@@ -14,9 +14,12 @@ import bouquet1 from '../../assets/images/bouquet1.jpeg';
 import gown2 from '../../assets/images/gown2.jpg';
 import bracelet from '../../assets/images/bracelet1.jpg';
 import bouquet2 from '../../assets/images/bouquet2.jpg';
+import ShopPopUp from './ShopPop';
 
 
 const ShopWrap = () => {
+  const [popUp, setPopUp] = useState(false);
+
   const [collections, setCollections] = useState([
     { id: 1, image: gown1, title: 'Gown' },
     { id: 2, image: gown2, title: 'Lube Gown' },
@@ -76,13 +79,19 @@ const ShopWrap = () => {
   const bouquetSwiperRef = useRef(null);
 
   return (
-    <>
+    <div style={{'position': 'relative'}}>
       <section>
         <h2>Our Collections</h2>
         <p>
           We offer a carefully curated collection of wedding dresses and accessories to make your special day truly magical. Explore our diverse range, from timeless classics to on-trend styles, designed to suit every bride's unique vision. Our commitment is to provide a personalized experience, helping you find 'the one' among our stunning gowns and adornments. Celebrate your individuality with our thoughtfully crafted pieces, ensuring you radiate confidence and beauty on your wedding day. At diamonddreams, we believe in making your journey to 'I do' as memorable and enchanting as the day itself.
         </p>
       </section>
+      {/* PopUP Section */}
+      {popUp && 
+        <div className="selectedItem">
+          <ShopPopUp setPopUp={setPopUp}/>
+        </div>
+      }
       <section>
         <h2>Gowns</h2>
         <div className='collectionSwiper'>
@@ -95,7 +104,7 @@ const ShopWrap = () => {
           >
             {collections.map((collection) => (
               <SwiperSlide key={collection.id}>
-                <img src={collection.image} alt={collection.title} />
+                <img src={collection.image} onClick={()=> setPopUp(true)} alt={collection.title} />
                 <p>{collection.title}</p>
               </SwiperSlide>
             ))}
@@ -149,7 +158,7 @@ const ShopWrap = () => {
         <p>Experience the Elegance of Our Picked Pieces</p>
         <button>Shop Now</button>
       </section>
-    </>
+    </div>
   );
 }
  

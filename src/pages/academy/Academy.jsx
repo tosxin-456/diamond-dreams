@@ -42,7 +42,7 @@ const AcademyWrap = () => {
       age: age,
       maritalStatus: maritalStatus,
       experienceLevel: experienceLevel,
-      expectation:expectation
+      expectations:expectation
     };
   };
   
@@ -75,11 +75,14 @@ const AcademyWrap = () => {
         setMaritalStatus('');
         setExperienceLevel('');
         setExpectation('')
-  
+    setSubmitting(false)
+        
       } else {
+       setSubmitting(false)
         console.error('Failed to submit form data');
       }
     } catch (error) {
+    setSubmitting(false)
       console.error('Error submitting form data:', error);
     }
   };
@@ -145,7 +148,7 @@ const AcademyWrap = () => {
           </ul>
         </article>
       </section>
-      <section>
+      <section className='sectEnroll'>
         <h2>Become one of us</h2>
         <article className='acadFormSwiPer'>
           <div className="oneOfUs"></div>
@@ -159,7 +162,7 @@ const AcademyWrap = () => {
               pagination={{ clickable: true }}
               onSwiper={(instance) => setSwiper(instance)}
             >
-              <form onSubmit={handleSubmit}>
+              <form>
                 <SwiperSlide>
                   <div className="form-fields">
                     <label htmlFor="name">Name</label>
@@ -195,7 +198,7 @@ const AcademyWrap = () => {
                     <input type="text" id='expectation' value={expectation} onChange={e=>setExpectation(e.target.value)}/>
                     <div className="butSwipNAv">
                       <button onClick={handlePrevClick}>Prev</button>
-                      <button disabled={submitting} >{submitting? 'Posting...' : 'Done'}</button>
+                      <button disabled={submitting} onClick={handleSubmit} >{submitting? 'Posting...' : 'Done'}</button>
                     </div>
                   </div>
                 </SwiperSlide>

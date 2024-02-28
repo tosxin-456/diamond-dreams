@@ -157,14 +157,15 @@ const Navbar = () => {
               <p>Admin</p>
             </div>
           </div>
-          <hr />
+          {isMobile&& <hr />}
+          {!isMobile && <div className='footLineDiVide'></div>}
           <div className="quickSocial">
             <ul className="quickLinks">
               <li>Quick Links</li>
-              <li>About us</li>
-              <li>Testimonials</li>
-              <li>FAQs</li>
-              <li>Shop</li>
+              <li><a href='/#aboutUs'>About us</a></li>
+              <li><a href='/#testimonials'>Testimonials</a></li>
+              <li><a href='/#faqs'>FAQs</a></li>
+              <li><Link to='Shop'>Shop</Link></li>
             </ul>
             <ul className="socialLiks">
               <li>Follow us</li>
@@ -175,17 +176,21 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className='socialIcons'>
-                <img src={instagram} alt="Instagram" />
-                <p>Instagram</p>
+                <Link to='' target="_blank" className='socialLinkLink'>
+                  <img src={instagram} alt="Instagram" />
+                  <p>Instagram</p>
+                </Link>
               </li>
               <li className='socialIcons'>
-                <img src={twitx} alt="Twitter" />
-                <p>Twitter</p>
+                <Link to='' target="_blank" className='socialLinkLink'>
+                  <img src={twitx} alt="Twitter" />
+                  <p>Twitter</p>
+                </Link>
               </li>
             </ul>
           </div>
-          <p className='copyRight'>Copyright. All Rights Reserved</p>
         </div>
+        <p className='copyRight'>Copyright. All Rights Reserved</p>
       </footer>
     </>
   );
