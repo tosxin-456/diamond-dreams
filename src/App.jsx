@@ -5,11 +5,21 @@ import {
   RouterProvider
 } from 'react-router-dom';
 import AdminWrapper from './layout/AdminWrap';
+import EnrollWrapper from './layout/EnrollmentWrap';
 
 import Navbar from "./layout/Navbar";
+import OrdersWrapper from './layout/OrdersWrap';
+import ProductWrapper from './layout/ProductWrap';
 import AcademyWrap from './pages/academy/Academy';
+import AcceptedEnroll from './pages/admin/Accept';
+import AccessoryCollection from './pages/admin/Acessories';
+import BouquetCollection from './pages/admin/Bouquet';
 import Dashboard from './pages/admin/Dashbpard';
+import DeliveredOrders from './pages/admin/DelOrders';
+import GownCollection from './pages/admin/Gowns';
 import Login from './pages/admin/Login';
+import PendingEnrolls from './pages/admin/Pend';
+import PendingOrders from './pages/admin/PendOrdes';
 import BlogWrap from './pages/blog/Blog';
 import CartWrapper from './pages/cart/Cart';
 import ContactWrap from './pages/contacts/Contact';
@@ -32,6 +42,19 @@ const router = createBrowserRouter(
       <Route path='Admin' element={<AdminWrapper/>}>
         <Route index element={<Login/>} />
         <Route path='Dashboard' element={<Dashboard/>} />
+        <Route element={<ProductWrapper/>}>
+          <Route path='Gowns' element={<GownCollection/>} />
+          <Route path='Accessory' element={<AccessoryCollection/>} />
+          <Route path='Bouquet' element={<BouquetCollection/>} />
+        </Route>
+        <Route element={<EnrollWrapper/> }>
+          <Route path='Pending' element={<PendingEnrolls/>} />
+          <Route path='Accepted' element={<AcceptedEnroll/>} />
+        </Route>
+        <Route element={<OrdersWrapper/>}>
+          <Route path='Pending-orders' element={<PendingOrders/>} />
+          <Route path='Delivered' element={<DeliveredOrders/>} />
+        </Route>
       </Route>
     </Route>
   )

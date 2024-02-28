@@ -9,13 +9,14 @@ import instagram from '../assets/icons/instagram.svg';
 import twitx from '../assets/icons/twitter.svg';
 
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [currentHeader, setCurrentHeader] = useState("one");
   const [toggleNav, setToggleNav] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
+  const history = useNavigate();
 
   const handleNavToggle = () => {
     setToggleNav(!toggleNav);
@@ -152,7 +153,7 @@ const Navbar = () => {
             <p>
               From stunning gowns to captivating accessories, our selection offers both purchasing and rental options, ensuring every bride finds her perfect match.
             </p>
-            <div className="footAdmin">
+            <div className="footAdmin" onClick={()=>history('Admin')}>
               <img src={lightAcc} alt="Admin" />
               <p>Admin</p>
             </div>

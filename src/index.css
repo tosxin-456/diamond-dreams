@@ -5,6 +5,7 @@
   /* Colors */
   /* Primary Colors */
   --navbar-bg: hsla(359, 100%, 18%, 1);
+  --active-link: #5A0001;
 
   /* Neutral Colors */
   --header-bg: linear-gradient(117.61deg, #000000 -14.09%, #000000 -4.26%, rgba(0, 0, 0, 0.772977) 49.35%, rgba(0, 0, 0, 0.537787) 62.43%, rgba(0, 0, 0, 0.352599) 72.89%, rgba(0, 0, 0, 0) 81.11%) ;
@@ -1192,6 +1193,84 @@ section.dashBoardSection .grid-icons article {
   font-weight: 600;
   font-family: var(--opensans);
   padding: .4rem .8rem;
+  border-radius: 3px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+}
+
+/* All-Products */
+nav.btmNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 1rem;
+  font-family: var(--opensans);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+nav.btmNav button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .6rem;
+  border-radius: 3px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+}
+
+nav.btmNav button img {
+  width: 15px;
+}
+
+nav.prodNav {
+  margin-block-end: 2rem;
+}
+
+nav.prodNav ul.topNav {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-family: var(--opensans);
+  font-size: 0.8rem;
+}
+
+nav.prodNav ul.topNav li a.active {
+  color: var(--active-link);
+}
+
+/* Pending/Accpeted */
+section.pendenroll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FBFBFB;
+  padding: 1rem;
+  margin-block: 1rem;
+}
+
+section.pendenroll .enrolDetails p {
+  font-family: var(--opensans);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+section.pendenroll .enrolDetails p span {
+  font-weight: 600;
+}
+
+section.pendenroll button {
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .5rem .8rem;
   border-radius: 3px;
   color: var(--white);
   font-size: 0.7rem;
