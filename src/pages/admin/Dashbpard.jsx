@@ -4,8 +4,32 @@ import cartIcon from '../../assets/icons/darkOutCart.svg';
 import LikeIcon from '../../assets/icons/Like.svg';
 import plusIcon from '../../assets/icons/lightPlus.svg';
 import { Link } from 'react-router-dom';
-
+import { useEffect } from 'react';
 const Dashboard = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("https://diamondreams.onrender.com/academy/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await res.json();
+        console.log(data)
+        setEnrollments(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
+
+
+
+
   return (
     <>
       <section className='dashBoardSection'>
