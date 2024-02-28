@@ -1696,3 +1696,6 @@ section.dashBoardSection .grid-icons {
   gap: 2rem;
 }
 
+#errorMessage{
+  color: #5A0001;
+}
