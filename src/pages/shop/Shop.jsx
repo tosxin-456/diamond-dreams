@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -19,21 +19,72 @@ import ShopPopUp from './ShopPop';
 
 const ShopWrap = () => {
   const [popUp, setPopUp] = useState(false);
+  // const [id, setId] = useState
+  const tosinToken = localStorage.getItem("token");
+  const token = JSON.parse(tosinToken);
+  
+  const [selectedItemId, setSelectedItemId] = useState(null)
+    const [collections, setCollections] = useState([]);
+    const [accessories, setAccessories] = useState([]);
+    const [bouquets, setBouquets] = useState([]);
+  const [products, setFetchedProducts] = useState([]);
 
-  const [collections, setCollections] = useState([
-    { id: 1, image: gown1, title: 'Gown' },
-    { id: 2, image: gown2, title: 'Lube Gown' },
-  ]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://diamondreams.onrender.com/product/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const productData = await response.json();
+        setFetchedProducts(productData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  const [accessory, setAccessory] = useState([
-    { id: 1, image: veil1, title: 'Veil' },
-    { id: 2, image: bracelet, title: 'Bracelet' },
-  ]);
+    fetchProducts();
+  }, [token]);
 
-  const [bouquets, setBouquet] = useState([
-    { id: 1, image: bouquet1 },
-    { id: 2, image: bouquet2 },
-  ]);
+
+  const handleClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setPopUp(true);
+  };
+
+  useEffect(() => {
+    const gownsCount = products.filter(product => product.collectionType === 'gowns');
+    const accessoriesCount = products.filter(product => product.collectionType === 'accessories');
+    const bouquetsCount = products.filter(product => product.collectionType === 'bouqets');
+    // console.log(bouquetsCount)
+    setCollections(gownsCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+
+
+  
+    setAccessories(accessoriesCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+  
+    setBouquets(bouquetsCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+  }, [products]);
+  
+  
 
   const handleSlide1Change = (direction, swiperRef) => {
     const activeIndex = swiperRef.current.swiper.activeIndex;
@@ -53,9 +104,9 @@ const ShopWrap = () => {
     let newIndex = activeIndex;
 
     if (direction === 'next') {
-      newIndex = (newIndex + 1) % accessory.length;
+      newIndex = (newIndex + 1) % accessories.length;
     } else if (direction === 'prev') {
-      newIndex = (newIndex - 1 + accessory.length) % accessory.length;
+      newIndex = (newIndex - 1 + accessories.length) % accessories.length;
     }
 
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
@@ -89,7 +140,7 @@ const ShopWrap = () => {
       {/* PopUP Section */}
       {popUp && 
         <div className="selectedItem">
-          <ShopPopUp setPopUp={setPopUp}/>
+          <ShopPopUp setPopUp={setPopUp} itemId={selectedItemId}/>
         </div>
       }
       <section>
@@ -104,7 +155,7 @@ const ShopWrap = () => {
           >
             {collections.map((collection) => (
               <SwiperSlide key={collection.id}>
-                <img src={collection.image} onClick={()=> setPopUp(true)} alt={collection.title} />
+                <img src={collection.image} onClick={() => handleClick(collection._id)} alt={collection.title} />
                 <p>{collection.title}</p>
               </SwiperSlide>
             ))}
@@ -123,9 +174,9 @@ const ShopWrap = () => {
               clickable: true,
             }}
           >
-            {accessory.map((accessor) => (
+            {accessories.map((accessor) => (
               <SwiperSlide key={accessor.id}>
-                <img src={accessor.image} alt={accessor.title} />
+                <img src={accessor.image} alt={accessor.title} onClick={() => handleClick(accessor._id)} />
                 <p>{accessor.title}</p>
               </SwiperSlide>
             ))}
@@ -146,7 +197,8 @@ const ShopWrap = () => {
           >
             {bouquets.map((bouquet) => (
               <SwiperSlide key={bouquet.id}>
-                <img src={bouquet.image} alt={bouquet.title} />
+                <img src={bouquet.image} alt={bouquet.title} onClick={() => handleClick(bouquet._id)} />
+                <p>{bouquet.title}</p>
               </SwiperSlide>
             ))}
           </Swiper>
