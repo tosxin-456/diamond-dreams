@@ -114,9 +114,9 @@ const handleSubmit = async (e) => {
 
 
   const [collections, setCollections] = useState([
-    { id: 1, image: gown, title: 'Gown' },
-    { id: 2, image: books, title: 'Collection 2' },
-    { id: 3, image: cart, title: 'Bag' },
+    { id: 1, image: gown, title: 'Gowns' },
+    { id: 2, image: books, title: 'Accessories' },
+    { id: 3, image: cart, title: 'Bags' },
   ]);
 
   const [testimony, setTestimony] = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'");
