@@ -19,9 +19,11 @@ import ShopPopUp from './ShopPop';
 
 const ShopWrap = () => {
   const [popUp, setPopUp] = useState(false);
+  // const [id, setId] = useState
   const tosinToken = localStorage.getItem("token");
   const token = JSON.parse(tosinToken);
   
+  const [selectedItemId, setSelectedItemId] = useState(null)
     const [collections, setCollections] = useState([]);
     const [accessories, setAccessories] = useState([]);
     const [bouquets, setBouquets] = useState([]);
@@ -47,27 +49,38 @@ const ShopWrap = () => {
     fetchProducts();
   }, [token]);
 
+
+  const handleClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setPopUp(true);
+  };
+
   useEffect(() => {
     const gownsCount = products.filter(product => product.collectionType === 'gowns');
     const accessoriesCount = products.filter(product => product.collectionType === 'accessories');
     const bouquetsCount = products.filter(product => product.collectionType === 'bouqets');
-    console.log(bouquetsCount)
+    // console.log(bouquetsCount)
     setCollections(gownsCount.map((product, index) => ({
       id: index + 1,
       image: product.picture,
-      title: product.name
+      title: product.name,
+      _id:product._id
     })));
+
+
   
     setAccessories(accessoriesCount.map((product, index) => ({
       id: index + 1,
       image: product.picture,
-      title: product.name
+      title: product.name,
+      _id:product._id
     })));
   
     setBouquets(bouquetsCount.map((product, index) => ({
       id: index + 1,
       image: product.picture,
-      title: product.name
+      title: product.name,
+      _id:product._id
     })));
   }, [products]);
   
@@ -127,7 +140,7 @@ const ShopWrap = () => {
       {/* PopUP Section */}
       {popUp && 
         <div className="selectedItem">
-          <ShopPopUp setPopUp={setPopUp}/>
+          <ShopPopUp setPopUp={setPopUp} itemId={selectedItemId}/>
         </div>
       }
       <section>
@@ -142,7 +155,7 @@ const ShopWrap = () => {
           >
             {collections.map((collection) => (
               <SwiperSlide key={collection.id}>
-                <img src={collection.image} onClick={()=> setPopUp(true)} alt={collection.title} />
+                <img src={collection.image} onClick={() => handleClick(collection._id)} alt={collection.title} />
                 <p>{collection.title}</p>
               </SwiperSlide>
             ))}
@@ -163,7 +176,7 @@ const ShopWrap = () => {
           >
             {accessories.map((accessor) => (
               <SwiperSlide key={accessor.id}>
-                <img src={accessor.image} alt={accessor.title} />
+                <img src={accessor.image} alt={accessor.title} onClick={() => handleClick(accessor._id)} />
                 <p>{accessor.title}</p>
               </SwiperSlide>
             ))}
@@ -184,7 +197,7 @@ const ShopWrap = () => {
           >
             {bouquets.map((bouquet) => (
               <SwiperSlide key={bouquet.id}>
-                <img src={bouquet.image} alt={bouquet.title} />
+                <img src={bouquet.image} alt={bouquet.title} onClick={() => handleClick(bouquet._id)} />
                 <p>{bouquet.title}</p>
               </SwiperSlide>
             ))}
