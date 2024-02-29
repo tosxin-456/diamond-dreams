@@ -1,9 +1,36 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import back from '../assets/icons/back-arrow.svg'
+import { useEffect, useState } from "react";
+
 
 const EnrollWrapper = () => {
   const history = useNavigate();
   const location = useLocation();
+  const tosinToken = localStorage.getItem("token");
+  const token = JSON.parse(tosinToken);
+  const [enrollments, setEnrollments] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("https://diamondreams.onrender.com/academy/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await res.json();
+        setEnrollments(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, [token]); 
+  
+  const pendingCount = enrollments.filter(enroll => !enroll.accepted).length;
+  const acceptedCount = enrollments.filter(enroll => enroll.accepted).length
 
   return (
     <>
@@ -15,10 +42,10 @@ const EnrollWrapper = () => {
       <nav className="prodNav">
         <ul className="topNav rule">
           <li>
-            <NavLink to='Pending'>Pending <span>(5)</span></NavLink>
+            <NavLink to='Pending'>Pending <span>({pendingCount})</span></NavLink>
           </li>
           <li>
-            <NavLink to='Accepted'>Accepted <span></span></NavLink>
+            <NavLink to='Accepted'>Accepted <span>({acceptedCount})</span></NavLink>
           </li>
         </ul>
       </nav>
