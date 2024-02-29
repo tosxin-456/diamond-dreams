@@ -111,7 +111,7 @@ const handleBlogSelection = async (index) => {
       <h2>{blogs[0].title}</h2>
       <p id="date">{blogs[0].fullDate} <span>COMMENTS</span></p>
       <div className="author">
-        <div className="authorPic"></div>
+              <div className="authorPic" style={{ backgroundImage: `url(${blogs[0].profilePic})` }}></div>
         <p>By {blogs[0].sender}</p>
       </div>
       <article>

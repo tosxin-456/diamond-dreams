@@ -20,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const shop = await fetch("https://diamondreams.onrender.com/product/all", {
+        const shop = await fetch("https://diamondreams.onrender.com/shop/all", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
