@@ -657,24 +657,26 @@ main section.shopCta button {
 }
 
 /* Shop Popup Styles */
-.selectedItem {
-  background: gray;
-  height: 100%;
+/* .selectedItem {
+  background: rgba(0, 0, 0, 0.456);
+  height: 10%;
   width: 100%;
   position: absolute;
   z-index: 40;
   top: 0;
-}
+} */
 
 .selectedItem .shopPop {
   display: flex;
   position: absolute;
-  top: 400px;
+  z-index: 500;
+  /* top: 400px; */
+  box-shadow: 0px 5px 27px 100px #00000012;
   width: 90%;
   left: 5%;
   height: 50vh;
   align-items: center;
-  border-radius: 40px;
+  border-radius: 20px;
   background-color: var(--white);
 }
 
@@ -682,14 +684,14 @@ main section.shopCta button {
   background-image: url(./assets/images/gown1.jpeg);
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  width: 40%;
+  width: 45%;
   height: 100%;
-  border-radius: 40px 10px 10px 40px;
+  border-radius: 20px 0px 0px 20px;
 }
 
 .selectedItem .shopPop .ItemInfo {
   position: relative;
-  width: 50%;
+  width: 45%;
   margin-inline: auto;
   font-family: var(--rokkitt);
 }
@@ -712,7 +714,7 @@ main section.shopCta button {
   width: 70%;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 1rem;
+  padding: .6rem 1rem;
   font-size: 0.8rem;
   margin-block: 1rem;
 }

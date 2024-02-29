@@ -128,6 +128,8 @@ const ShopWrap = () => {
   const collectionSwiperRef = useRef(null);
   const accessoriesSwiperRef = useRef(null);
   const bouquetSwiperRef = useRef(null);
+  // Loader
+  const [loading, setLoading] = useState(true);
 
   return (
     <div style={{'position': 'relative'}}>
@@ -140,7 +142,7 @@ const ShopWrap = () => {
       {/* PopUP Section */}
       {popUp && 
         <div className="selectedItem">
-          <ShopPopUp setPopUp={setPopUp} itemId={selectedItemId}/>
+          <ShopPopUp setPopUp={setPopUp} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
         </div>
       }
       <section>

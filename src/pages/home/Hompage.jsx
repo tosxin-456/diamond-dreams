@@ -55,7 +55,7 @@ useEffect(() => {
       const response = await fetch('https://diamondreams.onrender.com/admin/blog/all');
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setBlogs(data);
       } else {
         console.error('Failed to fetch blogs:', response.data);
@@ -315,15 +315,14 @@ const handleSubmit = async (e) => {
         <h2>Our Blog</h2>
         <div className="blogContainer">
           {blog.map((blog, index) => (
-        <Link  to='Blog'>      
-       <article key={index}>
-      <div className="imgOla" style={{ backgroundImage: `url(${blog.images})` }}></div>
-      <p>{blog.title}</p>
-    </article>
-        </Link>
-  ))}
-</div>
-
+            <Link key={index} to='Blog'>      
+              <article>
+                <div className="imgOla" style={{ backgroundImage: `url(${blog.images})` }}></div>
+                <p>{blog.title}</p>
+              </article>
+            </Link>
+          ))}
+        </div>
       </section>
       <section className="contactLine">
         <h2>Drop us a Line</h2>

@@ -3,13 +3,14 @@ import plusIcon from '../../assets/icons/plus.svg';
 import darkClose from '../../assets/icons/dark-close.svg';
 import lightCartIcon from '../../assets/icons/light_cart.svg';
 import React, { useState, useEffect } from 'react';
+import { RingLoader } from 'react-spinners';
+import HashLoader from 'react-spinners/HashLoader';
 
-const ShopPopUp = ({ setPopUp, itemId }) => {
+const ShopPopUp = ({ setPopUp, itemId, loading, setLoading }) => {
   const [count, setCount] = useState(0);
   const [shop, setShop] = useState('');
   const tosinToken = localStorage.getItem("token");
   const token = JSON.parse(tosinToken);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const add = () => setCount(count + 1);
@@ -42,7 +43,7 @@ const ShopPopUp = ({ setPopUp, itemId }) => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div style={{width: '10%', marginInline: 'auto'}}><HashLoader/></div>;
   }
 
   if (error) {
@@ -61,9 +62,6 @@ const ShopPopUp = ({ setPopUp, itemId }) => {
     window.location.reload();
   };
   
-  
-
-
   return (
     <div className="shopPop" key={shop.id}>
       <div className="shopItem" style={{ backgroundImage: `url(${shop.picture})` }} ></div>
