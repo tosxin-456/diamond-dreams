@@ -29,7 +29,7 @@ const ShopPopUp = ({ setPopUp, itemId }) => {
           throw new Error('Failed to fetch product');
         }
         const productData = await response.json();
-        console.log(productData)
+        // console.log(productData)
         setShop(productData);
       } catch (error) {
         setError(error.message);
@@ -48,6 +48,21 @@ const ShopPopUp = ({ setPopUp, itemId }) => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
+
+  const addToCart = (itemToAdd) => {
+    // Get the current cart items from local storage
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    // Add the new item to the existing cart items
+    const updatedCartItems = [...existingCartItems, itemToAdd];
+    // Save the updated cart items to local storage
+    localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    // Optionally, you can display a confirmation message or perform any other action
+    window.location.reload();
+  };
+  
+  
+
 
   return (
     <div className="shopPop" key={shop.id}>
@@ -75,8 +90,8 @@ const ShopPopUp = ({ setPopUp, itemId }) => {
           <p>Delivery Fee</p>
           <p>₦ 2,500</p>
         </div>
-        <button>
-          <img src={lightCartIcon} alt="Cart" />
+        <button onClick={() => addToCart(shop)}>
+          <img src={lightCartIcon} alt="Cart"  />
           Add to Cart
         </button>
       </div>
