@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -6,9 +6,38 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import bouquet from '../../assets/images/bouquet1.jpeg';
 
 const BouquetCollection = () => {
-  const [collections, setCollections] = useState([
-    { id: 1, image: bouquet, title: 'Red-roses' },
-  ]);
+  const tosinToken = localStorage.getItem("token");
+  const token = JSON.parse(tosinToken);
+  const [fetchedProducts, setFetchedProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://diamondreams.onrender.com/product/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const productData = await response.json();
+        setFetchedProducts(productData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [token]);
+
+  useEffect(() => {
+    if (fetchedProducts.length > 0) {
+      // Filter products by collectionType
+      const filtered = fetchedProducts.filter(product => product.collectionType === 'bouqets');
+      setFilteredProducts(filtered);
+    }
+  }, [fetchedProducts]);
 
   const collectionSwiperRef = useRef(null);
 
@@ -17,9 +46,9 @@ const BouquetCollection = () => {
     let newIndex = activeIndex;
 
     if (direction === 'next') {
-      newIndex = (newIndex + 1) % collections.length;
+      newIndex = (newIndex + 1) % filteredProducts.length;
     } else if (direction === 'prev') {
-      newIndex = (newIndex - 1 + collections.length) % collections.length;
+      newIndex = (newIndex - 1 + filteredProducts.length) % filteredProducts.length;
     }
 
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
@@ -36,10 +65,10 @@ const BouquetCollection = () => {
               clickable: true,
             }}
           >
-            {collections.map((collection) => (
-              <SwiperSlide key={collection.id}> 
-                <img src={collection.image} alt={collection.title} />
-                <p>{collection.title}</p>
+            {filteredProducts.map((product, index) => (
+              <SwiperSlide key={index}> 
+                <img src={product.picture} alt={product.name} />
+                <p>{product.name}</p>
               </SwiperSlide>
             ))}
           </Swiper>

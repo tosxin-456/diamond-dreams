@@ -794,7 +794,7 @@ section.blogSectionOne article .blogPic {
   height: 45vh;
   background-position: 50% 50%;
   background-size: cover;
-  background-image: url(./assets/images/whitCouple.jpeg);
+  /* background-image: url(./assets/images/whitCouple.jpeg); */
 }
 
 section.blogSectionOne article .likDiv {
@@ -1451,6 +1451,7 @@ section.pendenroll button {
     display: flex;
     gap: 3rem;
   }
+}
 
   section.contactLine .contactConTainer {
     display: flex;
@@ -1695,4 +1696,6 @@ section.dashBoardSection .grid-icons {
   gap: 2rem;
 }
 
+#errorMessage{
+  color: #5A0001;
 }
