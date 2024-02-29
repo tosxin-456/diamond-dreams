@@ -1279,6 +1279,57 @@ section.pendenroll button {
   margin-block: 1rem;
 }
 
+/* Profile */
+.ProfWrapp {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.456);
+  width: 100%;
+  height: 100vh;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ProfWrapp .profileWrap {
+  background-color: #fff;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-inline: auto;
+  border-radius: 5px;
+}
+
+.profileWrap .closIcon {
+  align-self: end;
+}
+
+.profileWrap .profCont img {
+  border-radius: 50%;
+  width: 50%;
+  height: 100%;
+  align-self: center;
+  margin-block: .5rem;
+}
+
+.profileWrap .profCont, .profCont form {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--rokkitt);
+  margin-block: 1rem;
+}
+
+.profCont form input {
+  font-family: var(--rokkitt);
+  margin-block: .5rem;
+  border: 1px solid black;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+
 /* DEsktop Styles */
 @media(min-width: 768px) {
   header.homeHeader {
@@ -1699,3 +1750,16 @@ section.dashBoardSection .grid-icons {
 #errorMessage{
   color: #5A0001;
 }
+/* Profile */
+.ProfWrapp .profileWrap {
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-inline: auto;
+  border-radius: 5px;
+  padding-block: 4rem;
+}
+
+

@@ -8,9 +8,11 @@ import profIcon from '../assets/icons/profile.svg';
 
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import ProfilePage from '../pages/admin/Profile';
 
 const AdminWrapper = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [showPorofile, setProfile] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const AdminWrapper = () => {
 
   return (
     <>
+    {showPorofile && <ProfilePage setProfile={setProfile}/>}
     <header className="adminHeader">
       <nav className="rule">
         <ul className='topNav'>
@@ -36,14 +39,16 @@ const AdminWrapper = () => {
             <img src={LightLogo} alt="Logo" />
             <p>Diamonddreams Event</p>
           </li>
-          {isMobile && (<li>
-            <img 
-              src={profIcon} 
-              className='profImg'
-              alt="Profile" 
-              // onClick={handleNavToggle}
-            />
-          </li>)}
+          {location.pathname.includes('Admin/') && 
+            <li>
+              <img 
+                src={profIcon} 
+                className='profImg'
+                alt="Profile" 
+                onClick={()=>setProfile(true)}
+              />
+            </li>
+          }
         </ul>
       </nav>
     </header>
