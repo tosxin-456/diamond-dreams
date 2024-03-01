@@ -16,6 +16,8 @@ const NewProduct = () => {
   const [errorMssg, setErrMssg] = useState('');
   const [selectedImage, setSelectedImage] = useState(false);
   const handleImgChange = (e) => setPicture(e.target.files[0])
+  const tosinToken = localStorage.getItem("token");
+  const token = JSON.parse(tosinToken);
 
   useEffect(() => {
       if (picture) {
@@ -30,6 +32,10 @@ const NewProduct = () => {
       formData.append('image', picture )
       const response = await fetch(`https://diamondreams.onrender.com/product`, {
         method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           picture,
           name, quantity, collectionType, price
