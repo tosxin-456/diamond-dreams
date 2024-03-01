@@ -186,13 +186,13 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className='socialIcons'>
-                <Link to='' target="_blank" className='socialLinkLink'>
+                <Link to='https://www.instagram.com/diamondreamsevents?igsh=NHI2OHRzcXNqM2Y5' target="_blank" className='socialLinkLink'>
                   <img src={instagram} alt="Instagram" />
                   <p>Instagram</p>
                 </Link>
               </li>
               <li className='socialIcons'>
-                <Link to='' target="_blank" className='socialLinkLink'>
+                <Link to='https://x.com/DiamondDreamsE1?t=J01EkTJFl9BbfPxshGhjRA&s=09' target="_blank" className='socialLinkLink'>
                   <img src={twitx} alt="Twitter" />
                   <p>Twitter</p>
                 </Link>
