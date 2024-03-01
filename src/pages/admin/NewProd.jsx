@@ -26,32 +26,37 @@ const NewProduct = () => {
       console.log(picture);
     }, [picture])
 
-  const handleUpload = async() => {
-    try {
-      const formData = new FormData();
-      formData.append('image', picture )
-      const response = await fetch(`https://diamondreams.onrender.com/product`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          picture,
-          name, quantity, collectionType, price
-        }), 
-      })
-      const data = await response.json();
-      if(response.ok){
-        console.log('Successfullll!!!');
-      }else{
-        console.log('Image upload failed',data);
-        setErrMssg(data)
+    const handleUpload = async () => {
+      try {
+        const formData = new FormData();
+        formData.append('picture', picture);
+        formData.append('name', name);
+        formData.append('quantity', quantity);
+        formData.append('collectionType', collectionType);
+        formData.append('price', price);
+    
+        const response = await fetch(`https://diamondreams.onrender.com/product`, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
+    
+        const data = await response.json();
+        if (response.ok) {
+          console.log('Image uploaded successfully!', data);
+          setErrMssg(data);
+          window.location.reload()
+        } else {
+          console.log('Image upload failed', data);
+          setErrMssg(data);
+        }
+      } catch (err) {
+        console.log('Error uploading image:', err);
       }
-    } catch(err){
-      console.log('Error uploading image:', err);
-    }
-  }
+    };
+    
 
   return (
     <div className='NewProd'>
