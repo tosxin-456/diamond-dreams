@@ -18,6 +18,7 @@ import Dashboard from './pages/admin/Dashbpard';
 import DeliveredOrders from './pages/admin/DelOrders';
 import GownCollection from './pages/admin/Gowns';
 import Login from './pages/admin/Login';
+import NewProduct from './pages/admin/NewProd';
 import PendingEnrolls from './pages/admin/Pend';
 import PendingOrders from './pages/admin/PendOrdes';
 import BlogWrap from './pages/blog/Blog';
@@ -55,6 +56,7 @@ const router = createBrowserRouter(
           <Route path='Pending-orders' element={<PendingOrders/>} />
           <Route path='Delivered' element={<DeliveredOrders/>} />
         </Route>
+        <Route path='New-Product' element={<NewProduct/>} /> 
       </Route>
     </Route>
   )

@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { RingLoader } from 'react-spinners';
 import HashLoader from 'react-spinners/HashLoader';
 
-const ShopPopUp = ({ setPopUp, itemId, loading, setLoading }) => {
+const ShopPopUp = ({ bouquetPopup, accessoryPopup, gownPopup, setAccessoryPopup, setGownPopup, setBouquetPopup, itemId, loading, setLoading }) => {
   const [count, setCount] = useState(0);
   const [shop, setShop] = useState('');
   const tosinToken = localStorage.getItem("token");
@@ -50,6 +50,16 @@ const ShopPopUp = ({ setPopUp, itemId, loading, setLoading }) => {
     return <div>Error: {error}</div>;
   }
 
+  const HandleCloseClick = () => {
+    if (gownPopup === true) {
+      setGownPopup(false);
+    } else if (accessoryPopup === true) {
+      setAccessoryPopup(false);
+    } else if (bouquetPopup === true) {
+      setBouquetPopup(false);
+    }
+  }
+
 
   const addToCart = (itemToAdd) => {
     // Get the current cart items from local storage
@@ -66,7 +76,7 @@ const ShopPopUp = ({ setPopUp, itemId, loading, setLoading }) => {
     <div className="shopPop" key={shop.id}>
       <div className="shopItem" style={{ backgroundImage: `url(${shop.picture})` }} ></div>
       <div className="ItemInfo">
-        <img className='closIc' onClick={() => setPopUp(false)} src={darkClose} alt="Close" />
+        <img className='closIc' onClick={HandleCloseClick} src={darkClose} alt="Close" />
         <h2>{shop.name}</h2>
         <div className="buyRent">
           <p>Buy</p>

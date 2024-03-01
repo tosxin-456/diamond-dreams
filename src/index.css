@@ -657,27 +657,14 @@ main section.shopCta button {
 }
 
 /* Shop Popup Styles */
-/* .selectedItem {
-  background: rgba(0, 0, 0, 0.456);
-  height: 10%;
-  width: 100%;
-  position: absolute;
-  z-index: 40;
-  top: 0;
-} */
-
 .selectedItem .shopPop {
   display: flex;
-  position: absolute;
   z-index: 500;
-  /* top: 400px; */
   box-shadow: 0px 5px 27px 100px #00000012;
-  width: 90%;
-  left: 5%;
-  height: 50vh;
-  align-items: center;
   border-radius: 20px;
   background-color: var(--white);
+  text-align: left;
+  height: 55vh;
 }
 
 .selectedItem .shopPop .shopItem {
@@ -689,22 +676,31 @@ main section.shopCta button {
   border-radius: 20px 0px 0px 20px;
 }
 
+.selectedItem .ItemInfo p {
+  margin: unset;
+}
+
 .selectedItem .shopPop .ItemInfo {
   position: relative;
   width: 45%;
   margin-inline: auto;
   font-family: var(--rokkitt);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: 1rem;
 }
 
 .shopPop .ItemInfo img.closIc {
   position: absolute;
-  top: -15px;
+  top: -105px;
   right: 0;
+  width: 15%;
 }
 
 .shopPop .ItemInfo h2 {
   font-size: 1rem;
-  margin-block-end: .5rem;
+  margin: unset;
 }
 
 .shopPop .ItemInfo .buyRent {
@@ -714,20 +710,24 @@ main section.shopCta button {
   width: 70%;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: .6rem 1rem;
+  padding: .4rem 1rem;
   font-size: 0.8rem;
-  margin-block: 1rem;
+  margin-block: .5rem;
 }
 
 .shopPop .ItemInfo .itemPrice {
-  margin-block-end: .5rem;
+  margin: unset;
 }
 
 .shopPop .ItemInfo .itemQuant .itemAddSub {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
   margin-block-end: .5rem;
+  width: 10%;
+}
+
+.shopPop .ItemInfo .itemQuant .itemAddSub img {
+  height: unset;
 }
 
 .shopPop .ItemInfo button {
@@ -749,6 +749,7 @@ main section.shopCta button {
 
 .shopPop .ItemInfo button img {
   width: 14%;
+  height: unset;
 }
 
 /* Blog Styles */
@@ -1332,6 +1333,85 @@ section.pendenroll button {
   cursor: not-allowed;
 }
 
+/* New Product */
+.NewProd {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewProd h2 {
+  margin-block: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--opensans);
+}
+
+.NewProd h2 span {
+  opacity: 0.8;
+  padding: 0.3rem .5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background-color: #EEEEEE;
+}
+
+.NewProd form {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewProd form input {
+  margin-block-end: 1rem;
+  border: none;
+  padding: .5rem;
+  font-size: 0.9rem;
+  font-family: var(--rokkitt);
+  border-bottom: 1px solid black;
+}
+
+.NewProd label {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  cursor: pointer;
+}
+
+.NewProd input[type='file'] {
+  display: none;
+}
+
+.NewProd button img {
+  width: 20px;
+}
+
+.NewProd button {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.NewProd button.lastBtn {
+  opacity: 0.7;
+  margin-block-start: 4rem;
+  align-self: flex-end;
+}
+
 /* DEsktop Styles */
 @media(min-width: 768px) {
   header.homeHeader {
@@ -1757,6 +1837,15 @@ section.pendenroll button {
   margin-inline: auto;
   border-radius: 5px;
   padding-block: 4rem;
+  }
+
+  .NewProd {
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    padding: 2rem;
+    margin-inline: auto;
+    margin-block: 1rem 2rem;
   }
 }
   
