@@ -94,10 +94,12 @@ const Dashboard = () => {
             </Link>
           </article>
           <article>
-            <img src={LikeIcon} alt="Like" />
-            <p>Total Blogs</p>
-            <span>{blogCount}</span>
-            <button><img src={plusIcon} alt="Plus" /> Add new blog post</button>
+            <Link to='../Add-post'>
+              <img src={LikeIcon} alt="Like" />
+              <p>Total Blogs</p>
+              <span>{blogCount}</span>
+              <button><img src={plusIcon} alt="Plus" /> Add new blog post</button>
+            </Link>
           </article>
         </div>
       </section>

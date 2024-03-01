@@ -52,7 +52,7 @@ abbr[title] {
   text-decoration: none;
 }
 
-input:focus, textarea:focus {
+input:focus, textarea:focus, select:focus {
   border: none;
   outline: none;
 }
@@ -1346,20 +1346,12 @@ section.pendenroll button {
   font-family: var(--opensans);
 }
 
-.NewProd h2 span {
-  opacity: 0.8;
-  padding: 0.3rem .5rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  background-color: #EEEEEE;
-}
-
 .NewProd form {
   display: flex;
   flex-direction: column;
 }
 
-.NewProd form input {
+.NewProd form input, select {
   margin-block-end: 1rem;
   border: none;
   padding: .5rem;
@@ -1407,6 +1399,91 @@ section.pendenroll button {
 }
 
 .NewProd button.lastBtn {
+  opacity: 0.7;
+  margin-block-start: 4rem;
+  align-self: flex-end;
+}
+
+/* ADD BLOG */
+.createBlogWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.createBlogWrap h2 {
+  margin-block: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--opensans);
+}
+
+.createBlogWrap form {
+  display: flex;
+  flex-direction: column;
+}
+
+.createBlogWrap form textarea {
+  font-size: 0.9rem;
+  font-family: var(--rokkitt);
+  height: 50vh;
+  padding: .5rem;
+  border-radius: 10px;
+  margin-block: .5rem 1rem;
+}
+
+.createBlogWrap form textarea:focus {
+  border: 1px solid black;
+  outline: unset;
+}
+
+.createBlogWrap form input {
+  margin-block-end: 1rem;
+  border: none;
+  padding: .5rem;
+  font-size: 1rem;
+  font-family: var(--rokkitt);
+  border-bottom: 1px solid black;
+}
+
+.createBlogWrap label {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  cursor: pointer;
+}
+
+.createBlogWrap input[type='file'] {
+  display: none;
+}
+
+.createBlogWrap button img {
+  width: 20px;
+}
+
+.createBlogWrap button {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.createBlogWrap button.lastBtn {
   opacity: 0.7;
   margin-block-start: 4rem;
   align-self: flex-end;
@@ -1851,6 +1928,23 @@ section.pendenroll button {
     padding: 2rem;
     margin-inline: auto;
     margin-block: 1rem 2rem;
+  }
+
+  .BlogCreateWrapper {
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    padding: 2rem;
+    margin-inline: auto;
+    margin-block: 0rem 2rem;
+  }
+
+  .BlogCreateWrapper .createBlogWrap form textarea {
+    height: 40vh;
+  }
+
+  .createBlogWrap button.lastBtn {
+    margin-block-start: 2rem;
   }
 }
   

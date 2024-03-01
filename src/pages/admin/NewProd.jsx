@@ -62,7 +62,7 @@ const NewProduct = () => {
     <div className='NewProd'>
       <div className="">
         <img src={back} alt="Back" onClick={()=> history('../Dashboard')} />
-        <h2>New Product   <span>Gown</span></h2>
+        <h2>New Product</h2>
         <form action="">
           <input 
             type="text" 
@@ -70,12 +70,15 @@ const NewProduct = () => {
             value={name}
             onChange={(e)=>setName(e.target.value)}
           />
-          <input 
-            type="text" 
-            placeholder='Collection Type' 
+          <select
             value={collectionType}
-            onChange={(e)=>setCollectionType(e.target.value)}
-          />
+            onChange={(e)=>setCollectionType(e.target.value)}  
+          >
+            <option value="">Collection Type</option>
+            <option value="gowns">Gown</option>
+            <option value="accessories">Accessories</option>
+            <option value="bouquets">Bouquets</option>
+          </select>
           <input 
             type="number" 
             placeholder='Quantity' 
