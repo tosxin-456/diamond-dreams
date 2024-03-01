@@ -1333,6 +1333,85 @@ section.pendenroll button {
   cursor: not-allowed;
 }
 
+/* New Product */
+.NewProd {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewProd h2 {
+  margin-block: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--opensans);
+}
+
+.NewProd h2 span {
+  opacity: 0.8;
+  padding: 0.3rem .5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  background-color: #EEEEEE;
+}
+
+.NewProd form {
+  display: flex;
+  flex-direction: column;
+}
+
+.NewProd form input {
+  margin-block-end: 1rem;
+  border: none;
+  padding: .5rem;
+  font-size: 0.9rem;
+  font-family: var(--rokkitt);
+  border-bottom: 1px solid black;
+}
+
+.NewProd label {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  cursor: pointer;
+}
+
+.NewProd input[type='file'] {
+  display: none;
+}
+
+.NewProd button img {
+  width: 20px;
+}
+
+.NewProd button {
+  align-self: flex-start;
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: 1rem;
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.NewProd button.lastBtn {
+  opacity: 0.7;
+  margin-block-start: 4rem;
+  align-self: flex-end;
+}
+
 /* DEsktop Styles */
 @media(min-width: 768px) {
   header.homeHeader {
@@ -1758,6 +1837,15 @@ section.pendenroll button {
   margin-inline: auto;
   border-radius: 5px;
   padding-block: 4rem;
+  }
+
+  .NewProd {
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 5px 27px 0px #00000012;
+    padding: 2rem;
+    margin-inline: auto;
+    margin-block: 1rem 2rem;
   }
 }
   
