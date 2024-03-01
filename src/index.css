@@ -1088,6 +1088,90 @@ section.fullCart .itemDecrip button img {
   width: 10%;
 }
 
+/* Cart POPUP */
+.JustNaija {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  position: absolute;
+  display: flex;
+  padding-block-start: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 500px;
+  background-color: white;
+  border-radius: 20px;
+  width: 90%;
+  margin-inline: auto;
+  font-family: var(--rokkitt);
+  font-size: 1.1rem;
+  box-shadow: 0px 5px 27px 200px #00000072;
+  padding-block-end: 2rem;
+  z-index: 700;
+}
+
+.popup button.shils {
+  font-weight: 500;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: .7rem;
+  border: none;
+  background: var(--navbar-bg);
+  align-self: end;
+  margin-inline-end: 2rem;
+  opacity: 0.8;
+}
+
+.popup .cartPopUpWrap {
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popup .cartPopUpWrap .cartPopDetails form p {
+  margin-block-end: 1rem;
+}
+
+.popup .cartPopUpWrap .cartPopDetails form input {
+  border: none;
+  font-family: var(--rokkitt);
+  border-bottom: 1px solid black;
+  margin-block-end: 1rem;
+  width: 100%;
+}
+
+.popup .cartPopUpWrap .cartPopDetails form .popUpRadGroup {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  margin-block-end: 1rem;
+}
+
+form .popUpRadGroup .flexRad {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.popup .cartPopUpWrap .cartPopDetails form button{
+  font-weight: 500;
+  font-family: var(--opensans);
+  padding: 0.5rem;
+  border-radius: 6px;
+  color: var(--white);
+  font-size: .7rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block-start: 1rem;
+}
+
 /* Admin Styles */
 header.adminHeader {
   background-color: var(--navbar-bg);
@@ -1489,6 +1573,8 @@ section.pendenroll button {
   align-self: flex-end;
 }
 
+
+
 /* DEsktop Styles */
 @media(min-width: 768px) {
   header.homeHeader {
@@ -1850,42 +1936,33 @@ section.pendenroll button {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  
-  /* Shop Popup Styles */
-  .selectedItem .shopPop {
-  display: flex;
-  position: absolute;
-  top: 400px;
-  width: 90%;
-  margin-inline: auto;
-  left: 5%;
-  height: 75vh;
-  }
+
+  .shopPop .ItemInfo img.closIc {
+    top: -95px;
+    right: -25px;
+    width: 10%;
+}
   
   .shopPop .ItemInfo .buyRent {
-  width: 30%;
+  width: 40%;
   font-size: 1rem;
   }
   
   .shopPop .ItemInfo button {
   width: 100%;
-  font-weight: 600;
-  font-family: var(--opensans);
-  padding: 0.5rem;
-  border-radius: 6px;
-  color: var(--white);
   font-size: 1rem;
-  border: none;
-  background: var(--navbar-bg);
-  margin-block-start: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 0.5rem;
   }
   
   .shopPop .ItemInfo button img {
-  width: 6%;
+  width: 7%;
+  }
+
+  /* CArt Popup */
+  .popup {
+    width: 40%;
+    top: 800px;
+    box-shadow: 0px 5px 27px 800px #00000072;
   }
   
   /* admin Styles */

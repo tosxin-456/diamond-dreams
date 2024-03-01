@@ -5,13 +5,15 @@ import minusIcon from '../../assets/icons/minus.svg';
 import plusIcon from '../../assets/icons/plus.svg'
 import deleteIcon from '../../assets/icons/delete.svg'
 import { Link } from 'react-router-dom';
+import CartPop from './CartPopUp';
 
 const CartWrapper = () => {
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [quantity, setQuantity] = useState('')
+  const [quantity, setQuantity] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
 
   const add = () => setCount(count + 1);
  const subtract = () => {
@@ -65,7 +67,7 @@ const CartWrapper = () => {
           </div>
           <h2>Cart is empty</h2>
             <p>Browse our categories and discover the best</p>
-            <Link>
+            <Link to='/Shop'>
           <button>Shop Now</button>
             </Link>
         </section>
@@ -101,19 +103,13 @@ const CartWrapper = () => {
           ))}
         </div>
         )}
-          {showPopup && (
-        <div className="popup">
-            {/* Add your pop-up content here */}
-          <form action="">
-          <label htmlFor="name"  >Name</label>
-          <input type="text" id='name' value={name} onChange={e => setName(e.target.value)} />
-          <label htmlFor="phone">Quantity</label>
-          <input type="number" id='phone' value={quantity} onChange={e => setQuantity(e.target.value)}/>
-          <label htmlFor="email">Email</label>
-          <input type="email" id='email' value={email} onChange={e => setEmail(e.target.value)} />
-            </form>
-          <button onClick={handleClosePopup}>Close</button>
-        </div>
+        {showPopup && (
+          <div className="JustNaija">
+            <div className="popup">
+              <CartPop isLoading={isLoading} setIsLoading={setIsLoading} />
+              <button className='shils' onClick={handleClosePopup}>Close</button>
+            </div>
+          </div>
       )}
     </div>
     </>
