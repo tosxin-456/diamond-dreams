@@ -1354,7 +1354,13 @@ section.pendenroll .enrolDetails p span {
   font-weight: 600;
 }
 
-section.pendenroll button {
+section.pendenroll .delWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section.pendenroll .delWrap button {
   font-weight: 600;
   font-family: var(--opensans);
   padding: .5rem .8rem;
@@ -1365,6 +1371,10 @@ section.pendenroll button {
   background: var(--navbar-bg);
   margin-block: 1rem;
   margin-left: auto;
+}
+
+section.pendenroll .delWrap img {
+  width: 35%;
 }
 
 /* Profile */

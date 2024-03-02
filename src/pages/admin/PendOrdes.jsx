@@ -94,8 +94,10 @@ const PendingOrders = () => {
             <p><span>Purchase Type: </span>{orders.purchaseType}</p>
             <p><span>Total Price: </span>{orders.ammount}</p>
           </div>
+          <div className="delWrap">
             <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
             <img src={del} alt="" onClick={() => deleteData(orders)} />
+          </div>
         </section>
       ))}
     </>

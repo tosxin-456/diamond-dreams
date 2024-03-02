@@ -55,8 +55,10 @@ const DeliveredOrders = () => {
             <p><span>Phone number: </span>{orders.purchaseType}</p>
             <p><span>Total Price: </span>{orders.ammount}</p>
           </div>
+          <div className="delWrap">
             <button className="pendingButton" >Delivered</button>
             <img src={del} alt="" onClick={() => deleteData(enroll._id)} />
+          </div>
         </section>
       ))}
     </>

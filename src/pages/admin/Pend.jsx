@@ -88,8 +88,10 @@ const PendingEnrolls = () => {
             <p><span>Phone number: </span>{enroll.phone}</p>
             <p><span>Expectation: </span>{enroll.expectations}</p>
           </div>
-          <button className="pendingButton" onClick={() => upDateData(enroll._id)}>Pending</button>
-          <img src={del} alt="" onClick={() => deleteData(enroll._id)} />
+          <div className="delWrap">
+            <button className="pendingButton" onClick={() => upDateData(enroll._id)}>Pending</button>
+            <img src={del} alt="" onClick={() => deleteData(enroll._id)} />
+          </div>
         </section>
       ))}
     </>
