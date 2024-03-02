@@ -50,10 +50,16 @@ const CartPop = ({ isLoading, setIsLoading, itemId, Img, qty }) => {
         setErrMssg('');
         const authorizationUrl = data
         window.location.href = authorizationUrl;
+        const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+        // Filter out the item with the specified _id
+        const updatedCartItems = existingCartItems.filter(item => item._id !== itemId);
+        // Save the updated cart items to local storage
+        localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+
       } else {
         setIsLoading(false);
         console.log('Shop upload failed', data);
-        setErrMssg(data.error || 'Failed to buy item');
+        setErrMssg(data.error || 'Failed to buy item, check your email address');
       }
     } catch (error) {
       setIsLoading(false);
@@ -75,6 +81,7 @@ const CartPop = ({ isLoading, setIsLoading, itemId, Img, qty }) => {
               <input
                 type="number"
                 placeholder="Quantity of Item"
+                readOnly
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
               />
