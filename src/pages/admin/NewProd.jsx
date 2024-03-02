@@ -77,6 +77,7 @@ const NewProduct = () => {
             <option value="">Collection Type</option>
             <option value="gowns">Gown</option>
             <option value="accessories">Accessories</option>
+            <option value="magazines">Magazine</option>
             <option value="bouquets">Bouquets</option>
           </select>
           <input 

@@ -35,6 +35,7 @@ const ProductWrapper = () => {
   const gownsCount = products.filter(products => products.collectionType === 'gowns').length
   const accessoriesCount = products.filter(products => products.collectionType === 'accessories').length
   const bouqetCount = products.filter(products => products.collectionType === 'bouqets').length
+  const magazineCount = products.filter(products => products.collectionType === 'magazines').length
   
   //  const pendingCount = enrollments.filter(enroll => !enroll.accepted).length;
 
@@ -56,6 +57,9 @@ const ProductWrapper = () => {
           </li>
           <li>
             <NavLink to='Bouquet'>Bouquets <span>({bouqetCount})</span></NavLink>
+          </li>
+          <li>
+            <NavLink to='Magazine'>Magazines <span>({magazineCount})</span></NavLink>
           </li>
         </ul>
       </nav>
