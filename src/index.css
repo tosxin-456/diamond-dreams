@@ -1364,6 +1364,7 @@ section.pendenroll button {
   border: none;
   background: var(--navbar-bg);
   margin-block: 1rem;
+  margin-left: auto;
 }
 
 /* Profile */
@@ -2028,3 +2029,16 @@ section.pendenroll button {
 #errorMessage{
   color: #5A0001;
   }
+  
+  .cart-count {
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    font-weight: 700;
+    /* top: 0; Adjust as needed */
+    /* right: 0; Adjust as needed */
+    margin-top: -10px;
+    margin-left: 30px;
+  }
+  
+  

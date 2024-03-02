@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
+
+
 
 const PendingOrders = () => {
 
@@ -20,13 +23,15 @@ const PendingOrders = () => {
       if (response.ok) {
         console.log('Form data submitted successfully');
         // Update enrollments after setting the enrollment as accepted
-        const updatedEnrollments = enrollments.map(enrollment => {
+       window.location.reload();
+
+        const updatedEnrollments = order.map(order => {
           if (order._id === id) {
             return { ...order, accepted: true };
           }
           return order;
         });
-        setEnrollments(updatedEnrollments);
+        setOrder(updatedEnrollments);
       } else {
         console.error('Failed to submit form data', data);
       }
@@ -34,6 +39,29 @@ const PendingOrders = () => {
       console.error('Error submitting form data:', error);
     }
   };
+  const deleteData = async (id) => {
+    try {
+      console.log(id)
+      const response = await fetch(`https://diamondreams.onrender.com/shop/${id._id}/${id.product}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        console.error('Failed to submit form data', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
+  }; 
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,10 +91,11 @@ const PendingOrders = () => {
         <section className="pendenroll" key={orders._id}>
           <div className="enrolDetails">
             <p><span>Name: </span>{orders.name}</p>
-            <p><span>Phone number: </span>{orders.purchaseType}</p>
+            <p><span>Purchase Type: </span>{orders.purchaseType}</p>
             <p><span>Total Price: </span>{orders.ammount}</p>
           </div>
-          <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
+            <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
+            <img src={del} alt="" onClick={() => deleteData(orders)} />
         </section>
       ))}
     </>

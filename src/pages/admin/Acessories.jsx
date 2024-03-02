@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
+
+
 // Collection Images
 import veil from '../../assets/images/veil1.jpeg';
 const AccessoryCollection = () => {
@@ -29,6 +32,26 @@ const AccessoryCollection = () => {
 
     fetchProducts();
   }, [token]);
+ 
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`https://diamondreams.onrender.com/product/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        window.reload()
+      } else {
+        console.error('Failed to submit form data', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
+  }; 
 
   useEffect(() => {
     if (fetchedProducts.length > 0) {

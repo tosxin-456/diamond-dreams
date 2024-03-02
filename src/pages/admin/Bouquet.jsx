@@ -3,6 +3,8 @@ import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 // Collection Images
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
+
 import bouquet from '../../assets/images/bouquet1.jpeg';
 
 const BouquetCollection = () => {
@@ -30,6 +32,26 @@ const BouquetCollection = () => {
 
     fetchProducts();
   }, [token]);
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`https://diamondreams.onrender.com/product/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        window.reload()
+      } else {
+        console.error('Failed to submit form data', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
+  }; 
+
 
   useEffect(() => {
     if (fetchedProducts.length > 0) {

@@ -7,6 +7,7 @@ import deleteIcon from '../../assets/icons/delete.svg'
 import { Link } from 'react-router-dom';
 import CartPop from './CartPopUp';
 
+
 const CartWrapper = () => {
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
@@ -14,7 +15,11 @@ const CartWrapper = () => {
   const [email, setEmail] = useState('')
   const [quantity, setQuantity] = useState('');
   const [isLoading, setIsLoading] = useState(false)
-
+  const [id, setId] = useState('')
+  const [image, setImage] = useState('')
+  const [quantityNo, setQuantityNo] = useState('')
+  
+  
   const add = () => setCount(count + 1);
  const subtract = () => {
   if (count > 0) {
@@ -40,8 +45,11 @@ const CartWrapper = () => {
    
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleOrderButtonClick = () => {
+  const handleOrderButtonClick = (item, count) => {
     setShowPopup(true);
+    setQuantityNo(count)
+    setId(item._id)
+    setImage(item.picture)
   };
 
   const handleClosePopup = () => {
@@ -90,7 +98,7 @@ const CartWrapper = () => {
                     <img src={plusIcon} onClick={add} alt="Plus" className="plus" />
                   </div>
                 </div>
-                <button onClick={() => handleOrderButtonClick()}>
+                <button onClick={() => handleOrderButtonClick(item, count,)}>
                   <img src={lightCartIcon} alt="Cart" />
                   Order
                 </button>
@@ -106,7 +114,7 @@ const CartWrapper = () => {
         {showPopup && (
           <div className="JustNaija">
             <div className="popup">
-              <CartPop isLoading={isLoading} setIsLoading={setIsLoading} />
+              <CartPop isLoading={isLoading} setIsLoading={setIsLoading} itemId={id} Img={image} qty = {quantityNo} />
               <button className='shils' onClick={handleClosePopup}>Close</button>
             </div>
           </div>

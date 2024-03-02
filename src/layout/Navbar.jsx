@@ -95,7 +95,9 @@ const Navbar = () => {
                   <li><NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink></li>
                   <li><NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink></li>
                   <li><NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink></li>
-                  <li><NavLink onClick={handleNavToggle} to='Cart'>{cartItems.length}<img src={cartIcon} alt="" /></NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Cart'>
+                  <span className="cart-count">{cartItems.length}</span>
+                    <img src={cartIcon} alt="" /></NavLink></li>
                 </ul>
               </div>
             </nav>
@@ -135,7 +137,9 @@ const Navbar = () => {
               </li>
             </ul>
             <ul className='cartNav'>
-              <li><NavLink onClick={handleNavToggle} to='Cart'>{cartItems.length}<img src={cartIcon} alt="" /></NavLink></li>
+              <li><NavLink onClick={handleNavToggle} to='Cart'>
+              <span className="cart-count">{cartItems.length}</span>
+                <img src={cartIcon} alt="" /></NavLink></li>
             </ul>
           </nav>
           <div className="landContainer rule">
