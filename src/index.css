@@ -1364,6 +1364,7 @@ section.pendenroll button {
   border: none;
   background: var(--navbar-bg);
   margin-block: 1rem;
+  margin-left: auto;
 }
 
 /* Profile */

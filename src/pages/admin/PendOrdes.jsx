@@ -23,13 +23,15 @@ const PendingOrders = () => {
       if (response.ok) {
         console.log('Form data submitted successfully');
         // Update enrollments after setting the enrollment as accepted
-        const updatedEnrollments = enrollments.map(enrollment => {
+       window.location.reload();
+
+        const updatedEnrollments = order.map(order => {
           if (order._id === id) {
             return { ...order, accepted: true };
           }
           return order;
         });
-        setEnrollments(updatedEnrollments);
+        setOrder(updatedEnrollments);
       } else {
         console.error('Failed to submit form data', data);
       }
@@ -39,7 +41,8 @@ const PendingOrders = () => {
   };
   const deleteData = async (id) => {
     try {
-      const response = await fetch(`https://diamondreams.onrender.com/shop/${id}`, {
+      console.log(id)
+      const response = await fetch(`https://diamondreams.onrender.com/shop/${id._id}/${id.product}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +51,7 @@ const PendingOrders = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        window.reload()
+        window.location.reload();
       } else {
         console.error('Failed to submit form data', data);
       }
@@ -88,11 +91,11 @@ const PendingOrders = () => {
         <section className="pendenroll" key={orders._id}>
           <div className="enrolDetails">
             <p><span>Name: </span>{orders.name}</p>
-            <p><span>Phone number: </span>{orders.purchaseType}</p>
+            <p><span>Purchase Type: </span>{orders.purchaseType}</p>
             <p><span>Total Price: </span>{orders.ammount}</p>
           </div>
             <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
-            <img src={del} alt="" onClick={() => deleteData(enroll._id)} />
+            <img src={del} alt="" onClick={() => deleteData(orders)} />
         </section>
       ))}
     </>
