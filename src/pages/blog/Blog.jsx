@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import likeIcon from '../../assets/icons/Like.svg'
+import profile from '../../assets/images/person1.jpeg'
 
 const BlogWrap = () => {
   const [name, setName] = useState('');
@@ -111,7 +112,7 @@ const handleBlogSelection = async (index) => {
       <h2>{blogs[0].title}</h2>
       <p id="date">{blogs[0].fullDate} <span>COMMENTS</span></p>
       <div className="author">
-              <div className="authorPic" style={{ backgroundImage: `url(${blogs[0].profilePic})` }}></div>
+      <div className="authorPic" style={{ backgroundImage: blogs[0].profilePic ? `url(${blogs[0].profilePic})` : `${profile}` }}></div>
         <p>By {blogs[0].sender}</p>
       </div>
       <article>
@@ -135,12 +136,12 @@ const handleBlogSelection = async (index) => {
             <h3>{comment.name}</h3>
             <p>{comment.comment}</p>
             <p className='p2'>{comment.fullDate}</p>
-            <p className='p3'>Add a comment</p>
+            {/* <p className='p3'>Add a comment</p> */}
           </article>
         ))}
           </section>
      <section className='contactLine'>
-        <h2>Leave a Reply</h2>
+        <h2>Add a Comment</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name</label>
           <input type="text" id='name' value={name} onChange={(e)=>setName(e.target.value)}  />

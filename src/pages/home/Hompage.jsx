@@ -121,10 +121,15 @@ const handleSubmit = async (e) => {
 
   const [testimony, setTestimony] = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'");
 
+  const [testimony2, setTestimony2] = useState("We couldn't be happier with our experience at diamonddreams. From finding the perfect attire to the final touches, every step was filled with professionalism and care. The team went above and beyond to ensure our vision came to life flawlessly. Thank you for making our special day truly unforgettable.");
+ 
+  const [testimony3, setTestimony3] = useState("Our experience with diamonddreams exceeded all expectations. The moment we stepped into their event center, we felt welcomed and understood. The staff listened attentively to my preferences and helped me find the dress of my dreams. Their expertise and dedication made the entire process stress-free and enjoyable. I couldn't have asked for a better bridal boutique to be a part of my wedding journey.");
+
+
   const [couple, setCouple] = useState([
-    { id: 1, image: couple4, title: testimony },
-    { id: 2, image: couple2, title: testimony },
-    { id: 3, image: couple3, title: testimony },
+    { id: 1, image: couple2, title: testimony },
+    { id: 2, image: couple3, title: testimony2 },
+    { id: 3, image: couple4, title: testimony3 },
   ]);
 
   const handleSlideChange = (direction, swiperRef) => {
