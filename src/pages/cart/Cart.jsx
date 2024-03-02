@@ -7,6 +7,7 @@ import deleteIcon from '../../assets/icons/delete.svg'
 import { Link } from 'react-router-dom';
 import CartPop from './CartPopUp';
 
+
 const CartWrapper = () => {
   const [cartItems, setCartItems] = useState([]);
   const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ const CartWrapper = () => {
   const [id, setId] = useState('')
   const [image, setImage] = useState('')
   const [quantityNo, setQuantityNo] = useState('')
+  
   
   const add = () => setCount(count + 1);
  const subtract = () => {
