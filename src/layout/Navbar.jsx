@@ -166,7 +166,7 @@ const Navbar = () => {
             <p>
               From stunning gowns to captivating accessories, our selection offers both purchasing and rental options, ensuring every bride finds her perfect match.
             </p>
-            <div className="footAdmin" onClick={()=>history('Admin')}>
+            <div className="footAdmin" style={{cursor: 'pointer'}} onClick={()=>history('Admin')}>
               <img src={lightAcc} alt="Admin" />
               <p>Admin</p>
             </div>

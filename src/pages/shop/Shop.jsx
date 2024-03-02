@@ -81,8 +81,6 @@ const ShopWrap = () => {
       _id:product._id
     })));
 
-
-  
     setAccessories(accessoriesCount.map((product, index) => ({
       id: index + 1,
       image: product.picture,
@@ -170,7 +168,7 @@ const ShopWrap = () => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div style={{'position': 'relative'}}>
+    <div id='Shop' style={{'position': 'relative'}}>
       <section>
         <h2>Our Collections</h2>
         <p>

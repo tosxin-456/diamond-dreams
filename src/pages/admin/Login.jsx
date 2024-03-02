@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     setLoginIn(true);
     const formData = constructFormData();
-    console.log(formData);
+    // console.log(formData);
   
     try {
       const response = await fetch('https://diamondreams.onrender.com/admin/login', {

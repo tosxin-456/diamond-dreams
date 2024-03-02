@@ -76,7 +76,7 @@ const AdminWrapper = () => {
             <li><a href='/#aboutUs'>About us</a></li>
             <li><a href='/#testimonials'>Testimonials</a></li>
             <li><a href='/#faqs'>FAQs</a></li>
-            <li><Link to='Shop'>Shop</Link></li>
+            <li><Link to='/Shop'>Shop</Link></li>
           </ul>
           <ul className="socialLiks">
             <li>Follow us</li>

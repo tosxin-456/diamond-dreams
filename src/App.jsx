@@ -29,6 +29,8 @@ import ContactWrap from './pages/contacts/Contact';
 import Home from "./pages/home/Hompage";
 import PlanWrap from './pages/planning/Planning';
 import ShopWrap from './pages/shop/Shop';
+import ViewBlogs from './pages/admin/ViewBlog';
+import ManagePost from './pages/admin/ManPost';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,7 +62,9 @@ const router = createBrowserRouter(
           <Route path='Delivered' element={<DeliveredOrders/>} />
         </Route>
         <Route path='New-Product' element={<NewProduct/>} /> 
+        <Route path='Blog-options' element={<ViewBlogs/>} />
         <Route path='Add-post' element={<CreateBlog/>} />
+        <Route path='Manage-post' element={<ManagePost/> } /> 
       </Route>
     </Route>
   )

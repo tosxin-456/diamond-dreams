@@ -94,7 +94,7 @@ const Dashboard = () => {
             </Link>
           </article>
           <article>
-            <Link to='../Add-post'>
+            <Link to='../Blog-options'>
               <img src={LikeIcon} alt="Like" />
               <p>Total Blogs</p>
               <span>{blogCount}</span>
