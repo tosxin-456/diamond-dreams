@@ -55,7 +55,7 @@ const CreateBlog = () => {
 
   return (
     <div className='BlogCreateWrapper'>
-      <img src={back} alt="Back" onClick={()=> history('../Dashboard')} />
+      <img src={back} alt="Back" onClick={()=> history('../Blog-options')} />
       <div className="createBlogWrap">
         <h2>New Blog Post</h2>
         <form action="">
