@@ -17,28 +17,38 @@ const CartPop = ({ isLoading, setIsLoading, itemId, Img, qty }) => {
 
     return () => clearInterval(intervalId);
   }, []);
-
+  // console.log(itemId)
   const handleContinue = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+  
     try {
+      // Ensure quantity is not empty or whitespace
+      if (!quantity.trim()) {
+        setIsLoading(false);
+        setErrMssg('Quantity cannot be empty');
+        return;
+      }
+  
       const formData = {
         email: email,
         purchaseType: purchaseType,
-        quantity: '0' 
+        quantity: quantity.trim() // Trim whitespace from quantity
       };
-     console.log(formData)
+  
       const response = await fetch(`https://diamondreams.onrender.com/shop/${itemId}`, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json' // Specify content type
+        },
         body: JSON.stringify(formData)
       });
   
       const data = await response.json();
       if (response.ok) {
         console.log('Shop uploaded successfully!', data);
-        setErrMssg(data);
-        const authorizationUrl = 'https://checkout.paystack.com/h3g2wnohgnuxke8';
+        setErrMssg('');
+        const authorizationUrl = data
         window.location.href = authorizationUrl;
       } else {
         setIsLoading(false);
@@ -51,6 +61,7 @@ const CartPop = ({ isLoading, setIsLoading, itemId, Img, qty }) => {
       setErrMssg('An error occurred while processing your request');
     }
   };
+  
 
   return (
     <>
