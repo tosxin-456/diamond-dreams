@@ -14,6 +14,8 @@ const ShopWrap = () => {
   const [gownPopup, setGownPopup] = useState(false);
   const [accessoryPopup, setAccessoryPopup] = useState(false);
   const [bouquetPopup, setBouquetPopup] = useState(false);
+  const [magazinePopup, setMagazinePopup] = useState(false);
+
   // const [id, setId] = useState
   const tosinToken = localStorage.getItem("token");
   const token = JSON.parse(tosinToken);
@@ -22,6 +24,8 @@ const ShopWrap = () => {
   const [collections, setCollections] = useState([]);
   const [accessories, setAccessories] = useState([]);
   const [bouquets, setBouquets] = useState([]);
+  const [magazines, setMagazines] = useState([]);
+
   const [products, setFetchedProducts] = useState([]);
 
   useEffect(() => {
@@ -57,11 +61,18 @@ const ShopWrap = () => {
     setSelectedItemId(itemId);
     setBouquetPopup(true);
   };
+  
+  const handleClick3 = (itemId) => {
+    setSelectedItemId(itemId);
+    setMagazinePopup(true);
+  };
 
   useEffect(() => {
     const gownsCount = products.filter(product => product.collectionType === 'gowns');
     const accessoriesCount = products.filter(product => product.collectionType === 'accessories');
     const bouquetsCount = products.filter(product => product.collectionType === 'bouqets');
+    const magazinesCount = products.filter(product => product.collectionType === 'magazines');
+
     // console.log(bouquetsCount)
     setCollections(gownsCount.map((product, index) => ({
       id: index + 1,
@@ -85,6 +96,14 @@ const ShopWrap = () => {
       title: product.name,
       _id:product._id
     })));
+   
+    setMagazines(magazinesCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+
   }, [products]);
   
   
@@ -128,9 +147,25 @@ const ShopWrap = () => {
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
 
+  const handleSlide4Change = (direction, swiperRef) => {
+    const activeIndex = swiperRef.current.swiper.activeIndex;
+    let newIndex = activeIndex;
+
+    if (direction === 'next') {
+      newIndex = (newIndex + 1) % collections.length;
+    } else if (direction === 'prev') {
+      newIndex = (newIndex - 1 + collections.length) % collections.length;
+    }
+
+    swiperRef.current.swiper.slideTo(newIndex, 500, false); 
+  };
+
+
   const collectionSwiperRef = useRef(null);
   const accessoriesSwiperRef = useRef(null);
   const bouquetSwiperRef = useRef(null);
+  const magazinesSwiperRef = useRef(null);
+
   // Loader
   const [loading, setLoading] = useState(true);
 
@@ -229,6 +264,36 @@ const ShopWrap = () => {
           <button className="swiper-button-prev" onClick={() => handleSlide3Change('prev', bouquetSwiperRef)}></button>
           <button className="swiper-button-next" onClick={() => handleSlide3Change('next', bouquetSwiperRef)}></button>
         </>
+        )}
+        </div>
+      </section>
+      <section>
+        <h2>Magazines</h2>
+        <div className='collectionSwiper'>
+          {magazinePopup && 
+            <div className="selectedItem">
+              <ShopPopUp magazinePopup={magazinePopup} setMagazinePopup={setMagazinePopup} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
+            </div>
+          }
+          {!accessoryPopup && (
+          <>
+            <Swiper
+              ref={magazinesSwiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+            >
+              {magazines.map((magazine) => (
+                <SwiperSlide key={magazine.id}>
+                  <img src={magazine.image} alt={magazine.title} onClick={() => handleClick1(magazine._id)} />
+                  <p>{magazine.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleSlide2Change('prev', magazinesSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlide2Change('next', magazinesSwiperRef)}></button>
+          </>
         )}
         </div>
       </section>

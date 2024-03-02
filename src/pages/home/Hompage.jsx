@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import gown from '../../assets/images/gown.jpeg';
 import books from '../../assets/images/planning.jpeg';
 import cart from '../../assets/images/cart-bag.jpeg';
+import magazine from '../../assets/images/Wedding Magazine Program and Timeline, Canva Template, Photo Program, Seating Chart, Fun Facts.jpeg';
+
 
 // Couple Images
 import couple2 from '../../assets/images/couple2.png';
@@ -117,6 +119,7 @@ const handleSubmit = async (e) => {
     { id: 1, image: gown, title: 'Gowns' },
     { id: 2, image: books, title: 'Accessories' },
     { id: 3, image: cart, title: 'Bags' },
+    { id: 3, image: magazine, title: 'Magazines' }
   ]);
 
   const [testimony, setTestimony] = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'");

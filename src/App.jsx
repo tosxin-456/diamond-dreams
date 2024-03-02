@@ -14,6 +14,7 @@ import AcademyWrap from './pages/academy/Academy';
 import AcceptedEnroll from './pages/admin/Accept';
 import AccessoryCollection from './pages/admin/Acessories';
 import BouquetCollection from './pages/admin/Bouquet';
+import MagazineCollection from './pages/admin/Magazines';
 import CreateBlog from './pages/admin/CreateBlog';
 import Dashboard from './pages/admin/Dashbpard';
 import DeliveredOrders from './pages/admin/DelOrders';
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
           <Route path='Gowns' element={<GownCollection/>} />
           <Route path='Accessory' element={<AccessoryCollection/>} />
           <Route path='Bouquet' element={<BouquetCollection/>} />
+          <Route path='Magazine' element={<MagazineCollection/>} />
         </Route>
         <Route element={<EnrollWrapper/> }>
           <Route path='Pending' element={<PendingEnrolls/>} />
