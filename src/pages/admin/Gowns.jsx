@@ -4,6 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 // Collection Images
 import gown from '../../assets/images/gown.jpeg';
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
+
+
 
 const GownCollection = () => {
   const tosinToken = localStorage.getItem("token");
@@ -30,6 +33,29 @@ const GownCollection = () => {
 
     fetchProducts();
   }, [token]);
+  
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`https://diamondreams.onrender.com/product/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        window.reload()
+      } else {
+        console.error('Failed to submit form data', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
+  }; 
+
+
+
 
   useEffect(() => {
     if (fetchedProducts.length > 0) {

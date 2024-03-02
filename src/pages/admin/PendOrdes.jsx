@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
+
+
 
 const PendingOrders = () => {
 
@@ -34,6 +37,28 @@ const PendingOrders = () => {
       console.error('Error submitting form data:', error);
     }
   };
+  const deleteData = async (id) => {
+    try {
+      const response = await fetch(`https://diamondreams.onrender.com/shop/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      if (response.ok) {
+        window.reload()
+      } else {
+        console.error('Failed to submit form data', data);
+      }
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+    }
+  }; 
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +91,8 @@ const PendingOrders = () => {
             <p><span>Phone number: </span>{orders.purchaseType}</p>
             <p><span>Total Price: </span>{orders.ammount}</p>
           </div>
-          <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
+            <button className="pendingButton" onClick={() => upDateData(orders._id)}>Pending</button>
+            <img src={del} alt="" onClick={() => deleteData(enroll._id)} />
         </section>
       ))}
     </>
