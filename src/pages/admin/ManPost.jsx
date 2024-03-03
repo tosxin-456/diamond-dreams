@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import del from '../../assets/icons/material-symbols-light_delete-outline.svg'
 
 const ManagePost = () => {
   const [blog , setBlogs] = useState([]);
+  const history = useNavigate();
+
+  const handleDelete = () => {
+
+  }
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -30,9 +36,12 @@ const ManagePost = () => {
       <h2>Available Blogs</h2>
       <div className="blogContainer">
         {blog.map((blog, index) => (   
-          <article>
+          <article className="availBlogs">
             <div className="imgOla" style={{ backgroundImage: `url(${blog.images})` }}></div>
-            <p>{blog.title}</p>
+            <div className="kevHart">
+              <p>{blog.title}</p>
+              <img onClick={handleDelete} src={del} alt="" />
+            </div>
           </article>
         ))}
       </div>

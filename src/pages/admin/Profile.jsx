@@ -1,7 +1,10 @@
 import darkClose from '../../assets/icons/dark-close.svg';
 import profPic from '../../assets/images/person1.jpeg';
 import {jwtDecode} from 'jwt-decode';
-
+import { TbCameraPlus } from 'react-icons/tb';
+import { GrClose } from "react-icons/gr";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = ({ setProfile }) => {
   const tosinToken = localStorage.getItem("token");
@@ -9,53 +12,103 @@ const ProfilePage = ({ setProfile }) => {
 
 // const decodedToken = jwt.decode(tosinToken);
 const decodedToken = jwtDecode(token);
-console.log(decodedToken)
+// console.log(decodedToken)
 const email = decodedToken.email
-  const name = decodedToken.name
-  
+const name = decodedToken.name
 
+const history = useNavigate();
+const [profilePic, setProfilePic] = useState(null);
+const [pic, setPic] = useState(null);
+const [isClosed, setIsClosed] = useState(false);
+const [isUploading, setIsUploading] = useState(false);
 
-  const handleUpload = async() => {
-    setIsUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append('image', avatar )
-      const response = await fetch(`https://hospital-management-backend.onrender.com/patient/${patient._id}/upload-picture`, {
-        method: 'POST',
-        body: formData, 
-      })
-      const data = await response.json();
-      if(response.ok){
-        setIsUploading(false);
-        setIsClosed(true);
-        setPic(URL.createObjectURL(avatar));
-      }else{
-        console.log('Image upload failed',data);
-        setIsUploading(false);
-      }
-    } catch(err){
-      console.log('Error uploading image:', err);
+const handleFileChange = (event) => setProfilePic(event.target.files[0]);
+
+const handleExit = () => {
+  setIsClosed(true);
+}  
+
+// useEffect( () => {
+//   // setIsLoading(true);
+//   fetch(`https://https://diamondreams.onrender.com/admin/profile-get`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       setPic(data);
+//       // setIsLoading(false);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       // setIsLoading(false)
+//     });
+// }, []);
+
+const handleClick = () => {
+  localStorage.removeItem('token');
+  history('/');
+}
+
+const handleUpload = async() => {
+  setIsUploading(true);
+  try {
+    const formData = new FormData();
+    formData.append('image', profilePic )
+    const response = await fetch(`https://https://diamondreams.onrender.com/admin/profile-update`, {
+      method: 'POST',
+      body: formData, 
+    })
+    const data = await response.json();
+    if(response.ok){
+      setIsUploading(false);
+      setIsClosed(true);
+      setPic(URL.createObjectURL(avatar));
+    }else{
+      console.log('Image upload failed',data);
       setIsUploading(false);
     }
+  } catch(err){
+    console.log('Error uploading image:', err);
+    setIsUploading(false);
+  }
 }
+
   return (
     <div className='ProfWrapp'>
       <div className="profileWrap">
         <img src={darkClose} className='closIcon' onClick={() => setProfile(false)} alt="" />
-        <input
-              // onChange={handleFileChange}  
-              type="file" 
-              accept="image/png,/image/jpeg,/image/jpg" 
-              id="upload" 
-            />
         <div className="profCont">
-          <img src={profPic} alt="Profile" />
-          <form>
-            <label htmlFor="Name">Name</label>
-            <input type="text" disabled id="Name" defaultValue={name} />
-            <label htmlFor="pword">Email</label>
-            <input type="email" disabled id="pword" defaultValue={email} />
-          </form>
+          {profilePic && !isClosed && (
+            <div className='av__upload'>
+              <div className="sideNav">
+                <div className="closeIcon"><GrClose onClick={handleExit} className='closeIcon__icon ' /></div>
+                <div className="sideNavProf">
+                  <img src={URL.createObjectURL(profilePic)} className='urlPic' alt="Selected" />
+                  {!isUploading && <button onClick={handleUpload} >Update</button>}
+                  {isUploading && <button>Updating Display pic...</button>}
+                </div>
+              </div>
+            </div>
+          )}
+          <>
+            <div className="firstPicWrap">
+              <img src={pic === null ? profPic : pic} alt="Profile" />
+              <div className="ndPic">
+                <input
+                  onChange={handleFileChange}
+                  type="file"
+                  accept="image/png,/image/jpeg,/image/jpg"
+                  id="upload"
+                />
+                <label htmlFor="upload">{ <TbCameraPlus size={25} className="cam" />}</label>
+              </div>
+            </div>
+            <form>
+              <label htmlFor="Name">Name</label>
+              <input type="text" disabled id="Name" defaultValue={name} />
+              <label htmlFor="pword">Email</label>
+              <input type="email" disabled id="pword" defaultValue={email} />
+            </form>
+            <button onClick={handleClick} className='logOutBtn'>LogOut</button>
+          </>
         </div>
       </div>
     </div>

@@ -1391,6 +1391,7 @@ section.pendenroll .delWrap img {
 
 .ProfWrapp .profileWrap {
   background-color: #fff;
+  position: relative;
   padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
@@ -1404,12 +1405,29 @@ section.pendenroll .delWrap img {
   align-self: end;
 }
 
-.profileWrap .profCont img {
-  border-radius: 50%;
-  width: 50%;
-  height: 100%;
+.profileWrap .profCont .firstPicWrap {
   align-self: center;
   margin-block: .5rem;
+  width: 50%;
+  height: 100%;
+}
+
+.profileWrap .profCont .firstPicWrap img {
+  border-radius: 50%;
+}
+
+.profileWrap .profCont .firstPicWrap .ndPic {
+  position: relative;
+}
+
+.profileWrap .profCont .ndPic .cam {
+  position: absolute;
+  top: -25px;
+  right: -5%;
+}
+
+.profileWrap .profCont .ndPic input[type="file"] {
+  display: none;
 }
 
 .profileWrap .profCont, .profCont form {
@@ -1419,6 +1437,34 @@ section.pendenroll .delWrap img {
   margin-block: 1rem;
 }
 
+.av__upload {
+  padding: 1rem;
+  box-shadow: 0px 5px 27px 0px #00000012;
+}
+
+.sideNavProf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sideNavProf button {
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.5rem;
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: .5rem;
+}
+
+.sideNavProf .urlPic {
+  width: 30%;
+  border-radius: 10%;
+}
+
 .profCont form input {
   font-family: var(--rokkitt);
   margin-block: .5rem;
@@ -1426,6 +1472,20 @@ section.pendenroll .delWrap img {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
   cursor: not-allowed;
+}
+
+button.logOutBtn {
+  font-weight: 600;
+  font-family: var(--opensans);
+  padding: .4rem .8rem;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 0.7rem;
+  width: 30%;
+
+  border: none;
+  background: var(--navbar-bg);
+  margin-block: .5rem;
 }
 
 /* New Product */
@@ -1611,6 +1671,24 @@ section.viewBlogWrap article p {
   font-family: var(--rokkitt);
   font-size: 1rem;
   color: var(--navbar-bg);
+}
+
+section.blogSection .blogContainer article.availBlogs .kevHart {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 1.5rem;
+  width: 90%;
+  margin-inline: auto;
+}
+
+section.blogSection .blogContainer article.availBlogs .kevHart p {
+  padding-block: unset;
+  margin-inline: unset;
+  line-height: 20px;
+}
+
+section.blogSection .blogContainer article.availBlogs {
+  height: 50vh;
 }
 
 /* DEsktop Styles */
