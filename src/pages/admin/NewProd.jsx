@@ -12,7 +12,7 @@ const NewProduct = () => {
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
   const [picture, setPicture] = useState(null);
-
+  const [uploading, setUploading] = useState(false)
   const [errorMssg, setErrMssg] = useState('');
   const [selectedImage, setSelectedImage] = useState(false);
   const handleImgChange = (e) => setPicture(e.target.files[0])
@@ -105,8 +105,9 @@ const NewProduct = () => {
           <p id='errorMessage'>{errorMssg.message}</p>
         </form>
       </div>
-      {!selectedImage && <button disabled style={{cursor: 'not-allowed'}} className='lastBtn'>Done</button>}
-      {selectedImage && <button onClick={handleUpload} style={{opacity: '1'}} className='lastBtn'>Done</button>}
+      {!selectedImage && <button disabled style={{ cursor: 'not-allowed' }} className='lastBtn'
+      >Done</button>}
+      {selectedImage && <button onClick={handleUpload} style={{opacity: '1'}} className='lastBtn' disabled={uploading}>{uploading ? 'Uploading...' : 'Done'}</button>}
     </div>
   );
 }

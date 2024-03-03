@@ -150,9 +150,9 @@ const ShopWrap = () => {
     let newIndex = activeIndex;
 
     if (direction === 'next') {
-      newIndex = (newIndex + 1) % collections.length;
+      newIndex = (newIndex + 1) % magazines.length;
     } else if (direction === 'prev') {
-      newIndex = (newIndex - 1 + collections.length) % collections.length;
+      newIndex = (newIndex - 1 + magazines.length) % magazines.length;
     }
 
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
@@ -284,13 +284,13 @@ const ShopWrap = () => {
             >
               {magazines.map((magazine) => (
                 <SwiperSlide key={magazine.id}>
-                  <img src={magazine.image} alt={magazine.title} onClick={() => handleClick1(magazine._id)} />
+                  <img src={magazine.image} alt={magazine.title} onClick={() => handleClick3(magazine._id)} />
                   <p>{magazine.title}</p>
                 </SwiperSlide>
               ))}
             </Swiper>
-            <button className="swiper-button-prev" onClick={() => handleSlide2Change('prev', magazinesSwiperRef)}></button>
-            <button className="swiper-button-next" onClick={() => handleSlide2Change('next', magazinesSwiperRef)}></button>
+            <button className="swiper-button-prev" onClick={() => handleSlide4Change('prev', magazinesSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlide4Change('next', magazinesSwiperRef)}></button>
           </>
         )}
         </div>
