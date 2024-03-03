@@ -27,7 +27,7 @@ const BlogWrap = () => {
         const blogsResponse = await fetch("https://diamondreams.onrender.com/admin/blog/all");
         const blogsData = await blogsResponse.json();
         setBlogs(blogsData);
-        
+        console.log(blogsData)
         // If no blogs are available, select the first one
         if (blogsData.length === 0) {
           handleBlogSelection(0);
@@ -112,7 +112,7 @@ const handleBlogSelection = async (index) => {
       <h2>{blogs[0].title}</h2>
       <p id="date">{blogs[0].fullDate} <span>COMMENTS</span></p>
       <div className="author">
-      <div className="authorPic" style={{ backgroundImage: blogs[0].profilePic ? `url(${blogs[0].profilePic})` : `${profile}` }}></div>
+      <div className="authorPic" style={{ backgroundImage: blogs[0].profileImage ? `url(${blogs[0].profileImage})` : `${profile}` }}></div>
         <p>By {blogs[0].sender}</p>
       </div>
       <article>
