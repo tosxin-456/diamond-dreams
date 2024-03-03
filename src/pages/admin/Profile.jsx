@@ -53,13 +53,7 @@ useEffect(() => {
     }
   };
   fetchData();
-}, [token]);
-
-  
-  
-
-  
-  
+}, [token]);  
 
 const handleClick = () => {
   localStorage.removeItem('token');
@@ -83,6 +77,7 @@ const handleUpload = async () => {
       setIsUploading(false);
       setIsClosed(true);
       setPic(URL.createObjectURL(profilePic));
+      Window.reload();
     } else {
       console.log('Image upload failed', data);
       setIsUploading(false);
