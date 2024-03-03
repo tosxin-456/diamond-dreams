@@ -77,7 +77,7 @@ const handleUpload = async () => {
       setIsUploading(false);
       setIsClosed(true);
       setPic(URL.createObjectURL(profilePic));
-      Window.reload();
+      window.location.reload();
     } else {
       console.log('Image upload failed', data);
       setIsUploading(false);
