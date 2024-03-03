@@ -28,48 +28,71 @@ const handleExit = () => {
   setIsClosed(true);
 }  
 
-// useEffect( () => {
-//   // setIsLoading(true);
-//   fetch(`https://https://diamondreams.onrender.com/admin/profile-get`)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       setPic(data);
-//       // setIsLoading(false);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       // setIsLoading(false)
-//     });
-// }, []);
+
+useEffect(() => {
+  setIsUploading(true);
+  const fetchData = async () => {
+    try {
+      const res = await fetch("https://diamondreams.onrender.com/admin/profile-get", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) {
+        throw new Error("Failed to fetch profile data");
+      }
+      const data = await res.json();
+      // console.log(data);
+      setPic(data.profilePic);
+      setIsUploading(false);
+    } catch (err) {
+      console.error(err);
+      setIsUploading(false);
+    }
+  };
+  fetchData();
+}, [token]);
+
+  
+  
+
+  
+  
 
 const handleClick = () => {
   localStorage.removeItem('token');
   history('/');
 }
 
-const handleUpload = async() => {
+const handleUpload = async () => {
   setIsUploading(true);
   try {
     const formData = new FormData();
-    formData.append('image', profilePic )
-    const response = await fetch(`https://https://diamondreams.onrender.com/admin/profile-update`, {
+    formData.append('image', profilePic);
+    const response = await fetch(`https://diamondreams.onrender.com/admin/profile-update`, {
       method: 'POST',
-      body: formData, 
-    })
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
     const data = await response.json();
-    if(response.ok){
+    if (response.ok) {
       setIsUploading(false);
       setIsClosed(true);
-      setPic(URL.createObjectURL(avatar));
-    }else{
-      console.log('Image upload failed',data);
+      setPic(URL.createObjectURL(profilePic));
+    } else {
+      console.log('Image upload failed', data);
       setIsUploading(false);
     }
-  } catch(err){
+  } catch (err) {
     console.log('Error uploading image:', err);
     setIsUploading(false);
   }
 }
+
 
   return (
     <div className='ProfWrapp'>
