@@ -2176,4 +2176,10 @@ section.blogSection .blogContainer article.availBlogs {
     margin-left: 30px;
   }
   
-  
+ /* Our Collection  */
+#delete {
+  margin-top: -50px;
+ width: 50px;
+
+}
+

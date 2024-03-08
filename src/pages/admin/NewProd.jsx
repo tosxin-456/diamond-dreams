@@ -61,7 +61,7 @@ const NewProduct = () => {
   return (
     <div className='NewProd'>
       <div className="">
-        <img src={back} alt="Back" onClick={()=> history('../Dashboard')} />
+        <img src={back} alt="Back" onClick={()=> history('../Gowns')} />
         <h2>New Product</h2>
         <form action="">
           <input 

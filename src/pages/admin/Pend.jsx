@@ -17,7 +17,7 @@ const PendingEnrolls = () => {
           },
         });
         const data = await res.json();
-        console.log(data)
+        // console.log(data)
         setEnrollments(data);
       } catch (err) {
         console.log(err);
@@ -66,7 +66,7 @@ const PendingEnrolls = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        window.reload()
+        window.location.reload()
       } else {
         console.error('Failed to submit form data', data);
       }
