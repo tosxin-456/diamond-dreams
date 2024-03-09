@@ -93,6 +93,7 @@ const GownCollection = () => {
           >
             {filteredProducts.map((product, index) => (
               <SwiperSlide key={index}> 
+                {/* <img id="delete" src={del} alt="" /> */}
                 <img src={product.picture} alt={product.name} />
                 <p>{product.name}</p>
               </SwiperSlide>
