@@ -16,6 +16,13 @@ import lightPhoneIcon from '../../assets/icons/phone-light.svg';
 import lightMailIcon from '../../assets/icons/light_email.svg';
 import event1 from '../../assets/images/event1.jpeg';
 import event2 from '../../assets/images/event2.jpg';
+import event3 from "../../assets/images/eventnav3.jpg";
+import event4 from "../../assets/images/eventnav2.jpg";
+import event5 from "../../assets/images/eventnav4.jpg";
+import event6 from "../../assets/images/eventnav6.jpg";
+import event7 from "../../assets/images/eventnav9.jpg";
+import event8 from "../../assets/images/eventnav10.jpg";
+
 import { useNavigate } from 'react-router-dom';
 
 const PlanWrap = () => {
@@ -75,6 +82,12 @@ const handleSubmit = async (e) => {
   const [collection, setCollection] = useState([
     { id: 1, image: event1 },
     { id: 2, image: event2 },
+    { id: 3, image: event3 },
+    { id: 4, image: event4 },
+    { id: 5, image: event5 },
+    { id: 6, image: event6 },
+    { id: 7, image: event7 },
+    { id: 8, image: event8 },
   ]);
 
   const handleSlide1Change = (direction, swiperRef) => {
