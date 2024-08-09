@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -7,16 +7,87 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 SwiperCore.use([Autoplay, Navigation]);
 
+// Social Icons
 import addBook from '../../assets/icons/address-book.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import mailIcon from '../../assets/icons/email.svg';
+import lightAddBook from '../../assets/icons/book-light.svg';
+import lightPhoneIcon from '../../assets/icons/phone-light.svg';
+import lightMailIcon from '../../assets/icons/light_email.svg';
 import event1 from '../../assets/images/event1.jpeg';
 import event2 from '../../assets/images/event2.jpg';
+import event3 from "../../assets/images/eventnav3.jpg";
+import event4 from "../../assets/images/eventnav2.jpg";
+import event5 from "../../assets/images/eventnav4.jpg";
+import event6 from "../../assets/images/eventnav6.jpg";
+import event7 from "../../assets/images/eventnav9.jpg";
+import event8 from "../../assets/images/eventnav10.jpg";
+
+import { useNavigate } from 'react-router-dom';
 
 const PlanWrap = () => {
+ 
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false);
+  // Function to construct object
+const constructFormData = () => {
+  return {
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  };
+};
+
+// Function to handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setSending(true)
+  // Construct form data object
+  const formData = constructFormData();
+  
+  try {
+    // Perform fetching here, sending formData to the server
+    // Example:
+    const response = await fetch('https://diamondreams.onrender.com/contact-us', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    // Handle response
+    // Example:
+    if (response.ok) {
+      console.log('Form data submitted successfully');
+      // Reset form fields if needed
+      setName('');
+      setPhone('');
+      setEmail('');
+      setMessage('');
+      setSending(false); 
+    } else {
+      console.error('Failed to submit form data');
+    }
+  } catch (error) {
+    setSending(false); 
+    console.error('Error submitting form data:', error);
+  }
+};
+
   const [collection, setCollection] = useState([
     { id: 1, image: event1 },
     { id: 2, image: event2 },
+    { id: 3, image: event3 },
+    { id: 4, image: event4 },
+    { id: 5, image: event5 },
+    { id: 6, image: event6 },
+    { id: 7, image: event7 },
+    { id: 8, image: event8 },
   ]);
 
   const handleSlide1Change = (direction, swiperRef) => {
@@ -32,6 +103,24 @@ const PlanWrap = () => {
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
   const collectionSwiperRef = useRef(null);
+
+  const phoneNumber = "+234 8037038662";
+  const history = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <>
@@ -137,34 +226,51 @@ const PlanWrap = () => {
           <button className="swiper-button-next" onClick={() => handleSlide1Change('next', collectionSwiperRef)}></button>
         </div>
       </section>
-      <section className='contactLine'>
+      <section className="contactLine">
         <h2>Contact us</h2>
         <p>Contact our team to start planning your dream wedding today!</p>
-        <aside className="socialIne">
-          <div className="socialAdd">
-            <img src={addBook} alt="Contact" />
-            <p>Jos, Plateau State</p>
-          </div>
-          <div className="socialAdd">
-            <img src={phoneIcon} alt="Phone" />
-            <p>+234 07483463507</p>
-          </div>
-          <div className="socialAdd">
-            <img src={mailIcon} alt="Mail" />
-            <p>diamonddreams@gmail.com</p>
-          </div>
-        </aside>
-        <form>
+        <div className="contactConTainer">
+          {isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={addBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={phoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={mailIcon} alt="Mail" />
+              <p>diamondreamsevents@gmail.com</p>
+            </div>
+          </aside>)}
+          {!isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={lightAddBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightPhoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightMailIcon} alt="Mail" />
+              <p>diamondreamsevents@gmail.com</p>
+            </div>
+          </aside>)}
+          <form onSubmit={handleSubmit}>
+            {!isMobile && (<h3>Send us a Message</h3>)}
           <label htmlFor="name">Name</label>
-          <input type="text" id='name' />
+          <input type="text" id='name'value={name} onChange={e => setName(e.target.value)} />
           <label htmlFor="phone">Phone</label>
-          <input type="number" id='phone' />
+          <input type="number" id='phone' value={phone} onChange={e => setPhone(e.target.value)} />
           <label htmlFor="email">Email</label>
-          <input type="email" id='email' />
+          <input type="email" id='email' value={email} onChange={e => setEmail(e.target.value)} />
           <label htmlFor="message">Message</label>
-          <textarea name="" id="message" cols="20" rows="4"></textarea>
-          <button>Send</button>
-        </form>
+          <textarea name="" id="message" cols="20" rows="4" value={message} onChange={e => setMessage(e.target.value)}></textarea>
+          <button disabled={sending} >{sending ? 'Sending...' : 'Send'}</button>
+          </form>
+        </div>
       </section>
     </>
   );

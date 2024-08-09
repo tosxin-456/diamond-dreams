@@ -1,12 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // PIC Imports 
 // Collection Images
 import gown from '../../assets/images/gown.jpeg';
 import books from '../../assets/images/planning.jpeg';
 import cart from '../../assets/images/cart-bag.jpeg';
+import magazine from '../../assets/images/Wedding Magazine Program and Timeline, Canva Template, Photo Program, Seating Chart, Fun Facts.jpeg';
+
 
 // Couple Images
 import couple2 from '../../assets/images/couple2.png';
@@ -14,34 +15,119 @@ import couple3 from '../../assets/images/couple3.jpg';
 import couple4 from '../../assets/images/couple4.jpg';
 
 import academyPic from '../../assets/icons/expect.svg';
-import whiteCouple from '../../assets/images/whiteCouple.jpeg';
 
 // Social Icons
 import addBook from '../../assets/icons/address-book.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import mailIcon from '../../assets/icons/email.svg';
+import lightAddBook from '../../assets/icons/book-light.svg';
+import lightPhoneIcon from '../../assets/icons/phone-light.svg';
+import lightMailIcon from '../../assets/icons/light_email.svg';
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 SwiperCore.use([Autoplay, Navigation]);
 
 const Home = () => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false);
+  const [blog , setBlogs] = useState([])
+  // Function to construct object
+const constructFormData = () => {
+  return {
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  };
+};
+
+useEffect(() => {
+  const fetchBlogs = async () => {
+    try {
+      const response = await fetch('https://diamondreams.onrender.com/admin/blog/all');
+      if (response.ok) {
+        const data = await response.json();
+        // console.log(data);
+        setBlogs(data);
+      } else {
+        console.error('Failed to fetch blogs:', response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    }
+  };
+
+  // Call fetchBlogs function when the component mounts
+  fetchBlogs();
+}, []);
+
+// Function to handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setSending(true)
+  // Construct form data object
+  const formData = constructFormData();
+  
+  try {
+    // Perform fetching here, sending formData to the server
+    // Example:
+    const response = await fetch('https://diamondreams.onrender.com/contact-us', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    // Handle response
+    // Example:
+    if (response.ok) {
+      console.log('Form data submitted successfully');
+      // Reset form fields if needed
+      setName('');
+      setPhone('');
+      setEmail('');
+      setMessage('');
+      setSending(false); 
+    } else {
+      console.error('Failed to submit form data');
+    }
+  } catch (error) {
+    setSending(false); 
+    console.error('Error submitting form data:', error);
+  }
+};
+  
+
+
+
   const [collections, setCollections] = useState([
-    { id: 1, image: gown, title: 'Gown' },
-    { id: 2, image: books, title: 'Collection 2' },
-    { id: 3, image: cart, title: 'Bag' },
+    { id: 1, image: gown, title: 'Gowns' },
+    { id: 2, image: books, title: 'Accessories' },
+    { id: 3, image: magazine, title: 'Magazines' }
   ]);
 
   const [testimony, setTestimony] = useState("Choosing diamonddreams was the best decision we made for our big day. The team's attention to detail and personalized service made the entire process a joy. Emily found her dream dress, and the accessories perfectly complemented our wedding theme. We felt like more than customers; we felt like part of the family. Thank you for helping us create magical memories.'");
 
+  const [testimony2, setTestimony2] = useState("We couldn't be happier with our experience at diamonddreams. From finding the perfect attire to the final touches, every step was filled with professionalism and care. The team went above and beyond to ensure our vision came to life flawlessly. Thank you for making our special day truly unforgettable.");
+ 
+  const [testimony3, setTestimony3] = useState("Our experience with diamonddreams exceeded all expectations. The moment we stepped into their event center, we felt welcomed and understood. The staff listened attentively to my preferences and helped me find the dress of my dreams. Their expertise and dedication made the entire process stress-free and enjoyable. I couldn't have asked for a better bridal boutique to be a part of my wedding journey.");
+
+
   const [couple, setCouple] = useState([
-    { id: 1, image: couple4, title: testimony },
-    { id: 2, image: couple2, title: testimony },
-    { id: 3, image: couple3, title: testimony },
+    { id: 1, image: couple2, title: testimony },
+    { id: 2, image: couple3, title: testimony2 },
+    { id: 3, image: couple4, title: testimony3 },
   ]);
 
   const handleSlideChange = (direction, swiperRef) => {
@@ -72,10 +158,28 @@ const Home = () => {
 
   const collectionSwiperRef = useRef(null);
   const coupleSwiperRef = useRef(null);
+  
+  const phoneNumber = "+234 7048346350";
+  const history = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
 
-  return (
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return ( 
     <>
-      <section className='AboutSect'>
+      <section id='aboutUs' className='AboutSect'>
         <h2>About Us</h2>
         <p>
           Welcome to our wedding hub, where dreams come to life! Explore an exquisite collection of wedding dresses and accessories available for purchase or rent, curated to reflect individual styles and enhance your special day. Our comprehensive event planning services ensure a seamless and unforgettable wedding experience tailored to your unique vision. Additionally, our academy offers expert guidance and courses for aspiring wedding planners, empowering enthusiasts to craft extraordinary celebrations. Join us on this enchanting journey toward your perfect wedding day. Whether shopping for the perfect gown, planning your special day, or seeking to learn more, find everything you need in one place.
@@ -124,7 +228,7 @@ const Home = () => {
           </li>
         </ul>
       </section>
-      <section className='CouplesSect'>
+      <section id='testimonials' className='CouplesSect'>
         <h2>What do our couples say</h2>
         <div className='collectionSwiper'>
           <Swiper
@@ -179,7 +283,7 @@ const Home = () => {
           </li>
         </ol>
       </section>
-      <section className="faq">
+      <section id='faqs' className="faq">
         <h2>Frequently Asked Questions</h2>
         <div className="firstArtSect">
           <article>
@@ -213,51 +317,64 @@ const Home = () => {
       <section className="blogSection">
         <h2>Our Blog</h2>
         <div className="blogContainer">
-          <article>
-            <div className="imgOla"></div>
-            <p>How to Choose the Perfect Wedding Venue</p>
-          </article>
-          <article>
-            <div className="imgOla"></div>
-            <p>Wedding Photography: Posing Ideas for the Perfect Shot</p>
-          </article>
-          <article>
-            <div className="imgOla"></div>
-            <p>Choosing Wedding Colors: Trends, Meanings, and Combinations</p>
-          </article>
+          {blog.map((blog, index) => (
+            <Link key={index} to='Blog'>      
+              <article>
+                <div className="imgOla" style={{ backgroundImage: `url(${blog.images})` }}></div>
+                <p>{blog.title}</p>
+              </article>
+            </Link>
+          ))}
         </div>
       </section>
       <section className="contactLine">
         <h2>Drop us a Line</h2>
-        <aside className="socialIne">
-          <div className="socialAdd">
-            <img src={addBook} alt="Contact" />
-            <p>Jos, Plateau State</p>
-          </div>
-          <div className="socialAdd">
-            <img src={phoneIcon} alt="Phone" />
-            <p>+234 07483463507</p>
-          </div>
-          <div className="socialAdd">
-            <img src={mailIcon} alt="Mail" />
-            <p>diamonddreams@gmail.com</p>
-          </div>
-        </aside>
-        <form>
+        <div className="contactConTainer">
+          {isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={addBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={phoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={mailIcon} alt="Mail" />
+              <p>diamondreamsevents@gmail.com</p>
+            </div>
+          </aside>)}
+          {!isMobile && (<aside className="socialIne">
+            <div className="socialAdd">
+              <img src={lightAddBook} alt="Contact" />
+              <p>Jos, Plateau State</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightPhoneIcon} alt="Phone" />
+              <p>{phoneNumber}</p>
+            </div>
+            <div className="socialAdd">
+              <img src={lightMailIcon} alt="Mail" />
+              <p>diamondreamsevents@gmail.com</p>
+            </div>
+          </aside>)}
+          <form onSubmit={handleSubmit}>
+            {!isMobile && (<h3>Send us a Message</h3>)}
           <label htmlFor="name">Name</label>
-          <input type="text" id='name' />
+          <input type="text" id='name' value={name} onChange={e => setName(e.target.value)}  />
           <label htmlFor="phone">Phone</label>
-          <input type="number" id='phone' />
+          <input type="number" id='phone' value={phone} onChange={e => setPhone(e.target.value)}  />
           <label htmlFor="email">Email</label>
-          <input type="email" id='email' />
+          <input type="email" id='email' value={email} onChange={e => setEmail(e.target.value)}  />
           <label htmlFor="message">Message</label>
-          <textarea name="" id="message" cols="20" rows="6"></textarea>
-          <button>Send</button>
-        </form>
+          <textarea name="" id="message" cols="20" rows="6" value={message} onChange={e => setMessage(e.target.value)} ></textarea>
+          <button disabled={sending} > {sending ? 'Sending...' : 'Send'}</button>
+          </form>
+        </div>
       </section>
       <section className="cta homeCta">
         <p>Experience the Elegance of Our Picked Pieces</p>
-        <button>Shop Now</button>
+        <button onClick={() => history('Shop')}>Shop Now</button>
       </section>
     </>
   );

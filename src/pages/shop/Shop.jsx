@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SwiperCore from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
@@ -8,29 +8,103 @@ import 'swiper/css/pagination'
 SwiperCore.use([Autoplay, Navigation]);
 
 // Pic Imports
-import gown1 from '../../assets/images/gown1.jpeg';
-import veil1 from '../../assets/images/veil1.jpeg';
-import bouquet1 from '../../assets/images/bouquet1.jpeg';
-import gown2 from '../../assets/images/gown2.jpg';
-import bracelet from '../../assets/images/bracelet1.jpg';
-import bouquet2 from '../../assets/images/bouquet2.jpg';
-
+import ShopPopUp from './ShopPop';
 
 const ShopWrap = () => {
-  const [collections, setCollections] = useState([
-    { id: 1, image: gown1, title: 'Gown' },
-    { id: 2, image: gown2, title: 'Lube Gown' },
-  ]);
+  const [gownPopup, setGownPopup] = useState(false);
+  const [accessoryPopup, setAccessoryPopup] = useState(false);
+  const [bouquetPopup, setBouquetPopup] = useState(false);
+  const [magazinePopup, setMagazinePopup] = useState(false);
 
-  const [accessory, setAccessory] = useState([
-    { id: 1, image: veil1, title: 'Veil' },
-    { id: 2, image: bracelet, title: 'Bracelet' },
-  ]);
+  // const [id, setId] = useState
+  const tosinToken = localStorage.getItem("token");
+  const token = JSON.parse(tosinToken);
+  
+  const [selectedItemId, setSelectedItemId] = useState(null)
+  const [collections, setCollections] = useState([]);
+  const [accessories, setAccessories] = useState([]);
+  const [bouquets, setBouquets] = useState([]);
+  const [magazines, setMagazines] = useState([]);
 
-  const [bouquets, setBouquet] = useState([
-    { id: 1, image: bouquet1 },
-    { id: 2, image: bouquet2 },
-  ]);
+  const [products, setFetchedProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://diamondreams.onrender.com/product/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const productData = await response.json();
+        setFetchedProducts(productData);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [token]);
+
+  const handleClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setGownPopup(true);
+  };
+
+  const handleClick1 = (itemId) => {
+    setSelectedItemId(itemId);
+    setAccessoryPopup(true);
+  };
+  const handleClick2 = (itemId) => {
+    setSelectedItemId(itemId);
+    setBouquetPopup(true);
+  };
+  
+  const handleClick3 = (itemId) => {
+    setSelectedItemId(itemId);
+    setMagazinePopup(true);
+  };
+
+  useEffect(() => {
+    const gownsCount = products.filter(product => product.collectionType === 'gowns');
+    const accessoriesCount = products.filter(product => product.collectionType === 'decors');
+    const bouquetsCount = products.filter(product => product.collectionType === 'bouqets');
+    const magazinesCount = products.filter(product => product.collectionType === 'magazines');
+
+    // console.log(bouquetsCount)
+    setCollections(gownsCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+
+    setAccessories(accessoriesCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+  
+    setBouquets(bouquetsCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+   
+    setMagazines(magazinesCount.map((product, index) => ({
+      id: index + 1,
+      image: product.picture,
+      title: product.name,
+      _id:product._id
+    })));
+
+  }, [products]);
+  
+  
 
   const handleSlide1Change = (direction, swiperRef) => {
     const activeIndex = swiperRef.current.swiper.activeIndex;
@@ -50,9 +124,9 @@ const ShopWrap = () => {
     let newIndex = activeIndex;
 
     if (direction === 'next') {
-      newIndex = (newIndex + 1) % accessory.length;
+      newIndex = (newIndex + 1) % accessories.length;
     } else if (direction === 'prev') {
-      newIndex = (newIndex - 1 + accessory.length) % accessory.length;
+      newIndex = (newIndex - 1 + accessories.length) % accessories.length;
     }
 
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
@@ -71,12 +145,30 @@ const ShopWrap = () => {
     swiperRef.current.swiper.slideTo(newIndex, 500, false); 
   };
 
+  const handleSlide4Change = (direction, swiperRef) => {
+    const activeIndex = swiperRef.current.swiper.activeIndex;
+    let newIndex = activeIndex;
+
+    if (direction === 'next') {
+      newIndex = (newIndex + 1) % magazines.length;
+    } else if (direction === 'prev') {
+      newIndex = (newIndex - 1 + magazines.length) % magazines.length;
+    }
+
+    swiperRef.current.swiper.slideTo(newIndex, 500, false); 
+  };
+
+
   const collectionSwiperRef = useRef(null);
   const accessoriesSwiperRef = useRef(null);
   const bouquetSwiperRef = useRef(null);
+  const magazinesSwiperRef = useRef(null);
+
+  // Loader
+  const [loading, setLoading] = useState(true);
 
   return (
-    <>
+    <div id='Shop' style={{'position': 'relative'}}>
       <section>
         <h2>Our Collections</h2>
         <p>
@@ -86,48 +178,73 @@ const ShopWrap = () => {
       <section>
         <h2>Gowns</h2>
         <div className='collectionSwiper'>
-          <Swiper
-            ref={collectionSwiperRef}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-          >
-            {collections.map((collection) => (
-              <SwiperSlide key={collection.id}>
-                <img src={collection.image} alt={collection.title} />
-                <p>{collection.title}</p>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <button className="swiper-button-prev" onClick={() => handleSlide1Change('prev', collectionSwiperRef)}></button>
-          <button className="swiper-button-next" onClick={() => handleSlide1Change('next', collectionSwiperRef)}></button>
+          {gownPopup && 
+            <div className="selectedItem">
+              <ShopPopUp gownPopup={gownPopup} setGownPopup={setGownPopup} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
+            </div>
+          }
+          {!gownPopup && (
+          <>
+            <Swiper
+              ref={collectionSwiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+            >
+              {collections.map((collection) => (
+                <SwiperSlide key={collection.id}>
+                  <img src={collection.image} onClick={() => handleClick(collection._id)} alt={collection.title} />
+                  <p>{collection.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleSlide1Change('prev', collectionSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlide1Change('next', collectionSwiperRef)}></button>
+          </>
+          )}
         </div>
       </section>
       <section>
         <h2>Accessories</h2>
         <div className='collectionSwiper'>
-          <Swiper
-            ref={accessoriesSwiperRef}
-            spaceBetween={30}
-            pagination={{
-              clickable: true,
-            }}
-          >
-            {accessory.map((accessor) => (
-              <SwiperSlide key={accessor.id}>
-                <img src={accessor.image} alt={accessor.title} />
-                <p>{accessor.title}</p>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <button className="swiper-button-prev" onClick={() => handleSlide2Change('prev', accessoriesSwiperRef)}></button>
-          <button className="swiper-button-next" onClick={() => handleSlide2Change('next', accessoriesSwiperRef)}></button>
+          {accessoryPopup && 
+            <div className="selectedItem">
+              <ShopPopUp accessoryPopup={accessoryPopup} setAccessoryPopup={setAccessoryPopup} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
+            </div>
+          }
+          {!accessoryPopup && (
+          <>
+            <Swiper
+              ref={accessoriesSwiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+            >
+              {accessories.map((accessor) => (
+                <SwiperSlide key={accessor.id}>
+                  <img src={accessor.image} alt={accessor.title} onClick={() => handleClick1(accessor._id)} />
+                  <p>{accessor.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleSlide2Change('prev', accessoriesSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlide2Change('next', accessoriesSwiperRef)}></button>
+          </>
+        )}
         </div>
       </section>
       <section>
         <h2>Bouquets</h2>
         <div className='collectionSwiper'>
+        {bouquetPopup && 
+          <div className="selectedItem">
+            <ShopPopUp bouquetPopup={bouquetPopup} setBouquetPopup={setBouquetPopup} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
+          </div>
+        }
+        {!bouquetPopup && (
+        <>
           <Swiper
             ref={bouquetSwiperRef}
             spaceBetween={30}
@@ -137,19 +254,52 @@ const ShopWrap = () => {
           >
             {bouquets.map((bouquet) => (
               <SwiperSlide key={bouquet.id}>
-                <img src={bouquet.image} alt={bouquet.title} />
+                <img src={bouquet.image} alt={bouquet.title} onClick={() => handleClick2(bouquet._id)} />
+                <p>{bouquet.title}</p>
               </SwiperSlide>
             ))}
           </Swiper>
           <button className="swiper-button-prev" onClick={() => handleSlide3Change('prev', bouquetSwiperRef)}></button>
           <button className="swiper-button-next" onClick={() => handleSlide3Change('next', bouquetSwiperRef)}></button>
+        </>
+        )}
+        </div>
+      </section>
+      <section>
+        <h2>Magazines</h2>
+        <div className='collectionSwiper'>
+          {magazinePopup && 
+            <div className="selectedItem">
+              <ShopPopUp magazinePopup={magazinePopup} setMagazinePopup={setMagazinePopup} loading={loading} setLoading={setLoading} itemId={selectedItemId}/>
+            </div>
+          }
+          {!accessoryPopup && (
+          <>
+            <Swiper
+              ref={magazinesSwiperRef}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+              }}
+            >
+              {magazines.map((magazine) => (
+                <SwiperSlide key={magazine.id}>
+                  <img src={magazine.image} alt={magazine.title} onClick={() => handleClick3(magazine._id)} />
+                  <p>{magazine.title}</p>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <button className="swiper-button-prev" onClick={() => handleSlide4Change('prev', magazinesSwiperRef)}></button>
+            <button className="swiper-button-next" onClick={() => handleSlide4Change('next', magazinesSwiperRef)}></button>
+          </>
+        )}
         </div>
       </section>
       <section className="cta shopCta">
         <p>Experience the Elegance of Our Picked Pieces</p>
         <button>Shop Now</button>
       </section>
-    </>
+    </div>
   );
 }
  

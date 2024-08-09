@@ -9,13 +9,23 @@ import instagram from '../assets/icons/instagram.svg';
 import twitx from '../assets/icons/twitter.svg';
 
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const [cartItems, setCartItems] = useState([]);
   const [currentHeader, setCurrentHeader] = useState("one");
   const [toggleNav, setToggleNav] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
+  const history = useNavigate();
+  
+  useEffect(() => {
+    // Fetch cart items from local storage
+    const storedCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCartItems);
+  }, []); // Run this effect only once when component mounts
+  
+  // console.log(cartItems.length)
 
   const handleNavToggle = () => {
     setToggleNav(!toggleNav);
@@ -85,7 +95,9 @@ const Navbar = () => {
                   <li><NavLink onClick={handleNavToggle} to='Contact'>Contact us</NavLink></li>
                   <li><NavLink onClick={handleNavToggle} to='Academy'>Our academy</NavLink></li>
                   <li><NavLink onClick={handleNavToggle} to='Planning'>Planning</NavLink></li>
-                  <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
+                  <li><NavLink onClick={handleNavToggle} to='Cart'>
+                  <span className="cart-count">{cartItems.length}</span>
+                    <img src={cartIcon} alt="" /></NavLink></li>
                 </ul>
               </div>
             </nav>
@@ -125,7 +137,9 @@ const Navbar = () => {
               </li>
             </ul>
             <ul className='cartNav'>
-              <li><NavLink onClick={handleNavToggle} to='Cart'><img src={cartIcon} alt="" /></NavLink></li>
+              <li><NavLink onClick={handleNavToggle} to='Cart'>
+              <span className="cart-count">{cartItems.length}</span>
+                <img src={cartIcon} alt="" /></NavLink></li>
             </ul>
           </nav>
           <div className="landContainer rule">
@@ -136,7 +150,7 @@ const Navbar = () => {
             {currentHeader === 'blog' && <p>Our Blog</p>}
             {currentHeader === 'contact' && <p>Contact us</p>}
             {currentHeader === 'academy' && <p>Our Academy</p>}
-            {currentHeader === 'planning' && <p>Planning</p>}
+            {currentHeader === 'planning' && <p>Planning and Decor </p>}
             {currentHeader === 'cart' && <p>Cart</p>}
           </div>
         </div>
@@ -152,19 +166,20 @@ const Navbar = () => {
             <p>
               From stunning gowns to captivating accessories, our selection offers both purchasing and rental options, ensuring every bride finds her perfect match.
             </p>
-            <div className="footAdmin">
+            <div className="footAdmin" style={{cursor: 'pointer'}} onClick={()=>history('Admin')}>
               <img src={lightAcc} alt="Admin" />
               <p>Admin</p>
             </div>
           </div>
-          <hr />
+          {isMobile&& <hr />}
+          {!isMobile && <div className='footLineDiVide'></div>}
           <div className="quickSocial">
             <ul className="quickLinks">
               <li>Quick Links</li>
-              <li>About us</li>
-              <li>Testimonials</li>
-              <li>FAQs</li>
-              <li>Shop</li>
+              <li><a href='/#aboutUs'>About us</a></li>
+              <li><a href='/#testimonials'>Testimonials</a></li>
+              <li><a href='/#faqs'>FAQs</a></li>
+              <li><Link to='Shop'>Shop</Link></li>
             </ul>
             <ul className="socialLiks">
               <li>Follow us</li>
@@ -175,17 +190,21 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className='socialIcons'>
-                <img src={instagram} alt="Instagram" />
-                <p>Instagram</p>
+                <Link to='https://www.instagram.com/diamondreamsevents?igsh=NHI2OHRzcXNqM2Y5' target="_blank" className='socialLinkLink'>
+                  <img src={instagram} alt="Instagram" />
+                  <p>Instagram</p>
+                </Link>
               </li>
               <li className='socialIcons'>
-                <img src={twitx} alt="Twitter" />
-                <p>Twitter</p>
+                <Link to='https://x.com/DiamondDreamsE1?t=J01EkTJFl9BbfPxshGhjRA&s=09' target="_blank" className='socialLinkLink'>
+                  <img src={twitx} alt="Twitter" />
+                  <p>Twitter</p>
+                </Link>
               </li>
             </ul>
           </div>
-          <p className='copyRight'>Copyright. All Rights Reserved</p>
         </div>
+        <p className='copyRight'>Copyright. All Rights Reserved</p>
       </footer>
     </>
   );
