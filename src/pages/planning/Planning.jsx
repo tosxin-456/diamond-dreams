@@ -104,7 +104,7 @@ const handleSubmit = async (e) => {
   };
   const collectionSwiperRef = useRef(null);
 
-  const phoneNumber = "+234 7048346350";
+  const phoneNumber = "+234 8037038662";
   const history = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -241,7 +241,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="socialAdd">
               <img src={mailIcon} alt="Mail" />
-              <p>diamonddreams@gmail.com</p>
+              <p>diamondreamsevents@gmail.com</p>
             </div>
           </aside>)}
           {!isMobile && (<aside className="socialIne">
@@ -255,7 +255,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="socialAdd">
               <img src={lightMailIcon} alt="Mail" />
-              <p>diamonddreams@gmail.com</p>
+              <p>diamondreamsevents@gmail.com</p>
             </div>
           </aside>)}
           <form onSubmit={handleSubmit}>

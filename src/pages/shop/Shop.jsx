@@ -69,7 +69,7 @@ const ShopWrap = () => {
 
   useEffect(() => {
     const gownsCount = products.filter(product => product.collectionType === 'gowns');
-    const accessoriesCount = products.filter(product => product.collectionType === 'accessories');
+    const accessoriesCount = products.filter(product => product.collectionType === 'decors');
     const bouquetsCount = products.filter(product => product.collectionType === 'bouqets');
     const magazinesCount = products.filter(product => product.collectionType === 'magazines');
 

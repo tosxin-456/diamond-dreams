@@ -150,7 +150,7 @@ const Navbar = () => {
             {currentHeader === 'blog' && <p>Our Blog</p>}
             {currentHeader === 'contact' && <p>Contact us</p>}
             {currentHeader === 'academy' && <p>Our Academy</p>}
-            {currentHeader === 'planning' && <p>Planning</p>}
+            {currentHeader === 'planning' && <p>Planning and Decor </p>}
             {currentHeader === 'cart' && <p>Cart</p>}
           </div>
         </div>

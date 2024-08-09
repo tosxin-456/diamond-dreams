@@ -114,7 +114,6 @@ const handleSubmit = async (e) => {
   const [collections, setCollections] = useState([
     { id: 1, image: gown, title: 'Gowns' },
     { id: 2, image: books, title: 'Accessories' },
-    { id: 3, image: cart, title: 'Bags' },
     { id: 3, image: magazine, title: 'Magazines' }
   ]);
 
@@ -342,7 +341,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="socialAdd">
               <img src={mailIcon} alt="Mail" />
-              <p>diamonddreams@gmail.com</p>
+              <p>diamondreamsevents@gmail.com</p>
             </div>
           </aside>)}
           {!isMobile && (<aside className="socialIne">
@@ -356,7 +355,7 @@ const handleSubmit = async (e) => {
             </div>
             <div className="socialAdd">
               <img src={lightMailIcon} alt="Mail" />
-              <p>diamonddreams@gmail.com</p>
+              <p>diamondreamsevents@gmail.com</p>
             </div>
           </aside>)}
           <form onSubmit={handleSubmit}>
